@@ -4,7 +4,7 @@ import './App.css';
 
 import PlantContextProvider from './store/plants-context'
 
-import PlantMenu from  './components/plant-menu'
+import PlantMenu from  './components/PlantMenu'
 
 function App() {
   return (
