@@ -1,18 +1,20 @@
-import React from 'react'
+import {useContext} from 'react'
 import styled from "styled-components";
 
 import {IPlant} from './ts/interfaces'
+import {DesignContext} from '../../store/design-context'
 
 interface IProps {
     plant: IPlant
-    addToCanvas: (plant: IPlant) => {}
+    // addToCanvas: (plant: IPlant) => {}
 }
 
-export default function PlantOption({plant, addToCanvas}: IProps) {   
+export default function PlantOption({plant, }: IProps) {
+    const designCtx = useContext(DesignContext) 
     function onClick () {
         console.log(plant);
         
-        //addToCanvas(plant)
+        designCtx.addToCanvas(plant)
     }
     return (
         <StyledPlantOption onClick={onClick}>{plant.name}</StyledPlantOption>

@@ -54,8 +54,8 @@ const PlantMenuWrapper = styled.div`
 export default function PlantMenu() {
   return (
     <div className="l-plant-menu">
-      {categories.map((category) => {
-        return <Category category={category} />;
+      {categories.map((category, i) => {
+        return <Category key={i} category={category} />;
       })}
     </div>
   );

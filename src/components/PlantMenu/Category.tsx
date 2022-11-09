@@ -4,8 +4,8 @@ import styled from "styled-components";
 import {IPlant, ICategory} from './ts/interfaces'
 import PlantOption from './PlantOption'
 
-import ForwardChevron from "./chevron-forward-outline.svg";
-import DownChevron from "./chevron-down-outline.svg";
+import ForwardChevron from "./img/chevron-forward-outline.svg";
+import DownChevron from "./img/chevron-down-outline.svg";
 
 interface IProps {
   category: ICategory
@@ -26,8 +26,8 @@ export default function Category({ category }: IProps) {
       </CategoryHeader>
       {showPlantOptions && (
         <PlantOptions>
-          {category.plants.map((plant) => {
-            return <PlantOption plant={plant} />;
+          {category.plants.map((plant, i) => {
+            return <PlantOption key={i} plant={plant} />;
           })}
         </PlantOptions>
       )}
