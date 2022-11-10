@@ -35,7 +35,7 @@ export default function Canvas() {
         <StyledCanvas onDragOver={onDragOver} onDrop={onDrop}>
             {
               plants.map(plant => {
-                  return <Card key={plant.id} plant={plant} />
+                  return <Card key={plant.itemId} plant={plant} />
               })
             }
             

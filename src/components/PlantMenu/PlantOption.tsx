@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import styled from "styled-components";
 
-import {IPlant} from './ts/interfaces'
+import {IPlant} from '../../ts/interfaces'
 import {DesignContext} from '../../store/design-context'
 
 interface IProps {

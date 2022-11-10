@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import {IPlant, ICategory} from './ts/interfaces'
+import {ICategory} from '../../ts/interfaces'
 import PlantOption from './PlantOption'
 
 import ForwardChevron from "./img/chevron-forward-outline.svg";

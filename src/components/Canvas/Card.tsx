@@ -37,14 +37,14 @@ export default function Card({plant}: IProps) {
 }
 
 const StyledCard = styled.div<{widthInMetres: number}>`
-${({widthInMetres}) => {
-  const diameter = metresToPx(widthInMetres)
-  return `
-    border-radius: ${diameter / 2}px;
-  height: ${diameter}px;
-  width: ${diameter}px;
-  `
-}}
+  ${({widthInMetres}) => {
+    const diameter = metresToPx(widthInMetres)
+    return `
+      border-radius: ${diameter / 2}px;
+      height: ${diameter}px;
+      width: ${diameter}px;
+    `
+  }}
   cursor: pointer;
   border: grey 1px solid;
   position: absolute;

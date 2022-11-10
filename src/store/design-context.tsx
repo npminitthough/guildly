@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import {IPlant, IPlantWithItemId} from '../ts/interfaces'
 
 const defaultDesignContext = {
-  selectedPlants: [{id: '', itemId: '', name: '', widthInMetres: 0}],
+  selectedPlants: [{itemId: '', name: '', widthInMetres: 0}],
   addToCanvas: (plant: IPlant) => {}
 }
 

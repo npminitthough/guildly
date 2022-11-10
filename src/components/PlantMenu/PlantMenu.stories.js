@@ -4,6 +4,7 @@ import PlantMenu from "./PlantMenu";
 import DesignContextProvider, {
   DesignContext,
 } from "../../store/design-context";
+import PlantCatalogueProvider from "../../store/plant-catalogue-context";
 
 export default {
   title: "Plant menu",
@@ -13,10 +14,12 @@ export default {
 export const MyPlantMenu = () => {
   return (
     <div>
-      <DesignContextProvider>
-        <PlantMenu />
-        <ExampleDisplay />
-      </DesignContextProvider>
+      <PlantCatalogueProvider>
+        <DesignContextProvider>
+          <PlantMenu />
+          <ExampleDisplay />
+        </DesignContextProvider>
+      </PlantCatalogueProvider>
     </div>
   );
 };
