@@ -25,7 +25,6 @@ export default function Canvas() {
         const card = document.getElementById(cardId);
 
         if (card && card.style) {
-
             card.style.left = e.clientX + parseInt(xoffset, 10) + "px";
             card.style.top = e.clientY + parseInt(yoffset, 10) + "px";
         }

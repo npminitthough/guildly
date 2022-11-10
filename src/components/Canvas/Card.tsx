@@ -2,6 +2,7 @@ import React, { MouseEvent } from 'react'
 import styled from 'styled-components'
 
 import {IPlantWithItemId} from '../../ts/interfaces'
+import {metresToPx} from '../../utils/conversions'
 
 interface IProps {
   plant: IPlantWithItemId
@@ -28,18 +29,24 @@ export default function Card({plant}: IProps) {
         id={plant.itemId}
         draggable={true}
         onDragStart={onDragStart}
+        widthInMetres={plant.widthInMetres}
       >
         <p>{plant.name}</p>
       </StyledCard>
     )
 }
 
-const StyledCard = styled.div`
+const StyledCard = styled.div<{widthInMetres: number}>`
+${({widthInMetres}) => {
+  const diameter = metresToPx(widthInMetres)
+  return `
+    border-radius: ${diameter / 2}px;
+  height: ${diameter}px;
+  width: ${diameter}px;
+  `
+}}
   cursor: pointer;
   border: grey 1px solid;
-  border-radius: 50px;
-  height: 100px;
-  width: 100px;
   position: absolute;
   color: grey;
   text-align: center;
