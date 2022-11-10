@@ -2,17 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import PlantContextProvider from './store/plants-context'
+import PlantCatalogueContextProvider from './store/plant-catalogue-context'
 
-import PlantMenu from  './components/PlantMenu'
+import DesignPage from  './pages/DesignPage/DesignPage'
 
 function App() {
   return (
-    <PlantContextProvider>
+    <PlantCatalogueContextProvider>
       <div className="App">
-      <PlantMenu />
+      <DesignPage />
       </div>
-    </PlantContextProvider>
+    </PlantCatalogueContextProvider>
   );
 }
 

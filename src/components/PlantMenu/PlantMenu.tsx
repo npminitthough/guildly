@@ -5,7 +5,7 @@ import Category from "./Category";
 import {PlantCatalogueCtx} from '../../store/plant-catalogue-context'
 
 const PlantMenuWrapper = styled.div`
-  max-width: 200px;
+  
 `;
 
 export default function PlantMenu() {
@@ -14,10 +14,10 @@ export default function PlantMenu() {
   const categories = PlantCatalogueContext || []
   
   return (
-    <div className="l-plant-menu">
+    <PlantMenuWrapper className="l-plant-menu">
       {categories.map((category, i) => {
         return <Category key={i} category={category} />;
       })}
-    </div>
+    </PlantMenuWrapper>
   );
 }

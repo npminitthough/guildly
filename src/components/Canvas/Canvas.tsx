@@ -45,9 +45,10 @@ export default function Canvas() {
 }
 
 const StyledCanvas = styled.div`
-    display: 'flex';
     height: 100vh;
     width: 500px;
-    border: 1px black solid;
+    flex: 5;
+    overflow: scroll;
+    background: white;
 `
 

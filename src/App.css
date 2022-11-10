@@ -1,3 +1,9 @@
+body {
+  background: linear-gradient(to bottom, #00dbb7 0%, #46b884 100%);
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }

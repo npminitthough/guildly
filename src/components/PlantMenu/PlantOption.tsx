@@ -24,7 +24,6 @@ export default function PlantOption({plant, }: IProps) {
 const StyledPlantOption = styled.div`
   height: 40px;
   width: 100%;
-  background: white;
   display: flex;
   justify-content: center;
   align-items: center;

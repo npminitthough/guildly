@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import {IPlantWithItemId} from '../../ts/interfaces'
 import {metresToPx} from '../../utils/conversions'
 
+import GlobalStyles from '../../constants/styles'
+
 interface IProps {
   plant: IPlantWithItemId
 }
@@ -39,16 +41,19 @@ export default function Card({plant}: IProps) {
 const StyledCard = styled.div<{widthInMetres: number}>`
   ${({widthInMetres}) => {
     const diameter = metresToPx(widthInMetres)
+    const fontSize = diameter < 50 ? 12 : 16
+
     return `
       border-radius: ${diameter / 2}px;
       height: ${diameter}px;
       width: ${diameter}px;
+      font-size: ${fontSize}px;
     `
   }}
   cursor: pointer;
-  border: grey 1px solid;
+  border: ${GlobalStyles.colors.tertiary600} 1px solid;
   position: absolute;
-  color: grey;
+  color: ${GlobalStyles.colors.tertiary600};
   text-align: center;
   display: flex;
   align-items: center;
