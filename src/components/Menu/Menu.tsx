@@ -1,0 +1,29 @@
+import React from 'react'
+import styled from 'styled-components'
+
+import GlobalStyles from '../../constants/styles'
+
+export default function Menu({children}: any) {  
+
+    return (
+        <MenuWrapper>
+            {children}
+        </MenuWrapper>
+    )
+}
+
+const MenuWrapper = styled.aside`
+    flex:1;
+    background: ${GlobalStyles.colors.primary600};
+    height: 100%;
+    padding: 20px 0;
+    color: white;
+    font-family: monospace;
+    overflow-y: scroll;
+    ::-webkit-scrollbar-thumb {
+        background-color: ${GlobalStyles.colors.secondary500};
+    }
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+`
