@@ -11,13 +11,14 @@ interface IProps {
 
 export default function PlantOption({plant, }: IProps) {
     const designCtx = useContext(DesignContext) 
-    function onClick () {
-        console.log(plant);
-        
+
+    function onClick () {    
         designCtx.addToCanvas(plant)
     }
     return (
-        <StyledPlantOption onClick={onClick}>{plant.name}</StyledPlantOption>
+        <StyledPlantOption onClick={onClick}>
+            {plant.name}
+        </StyledPlantOption>
     )
 }
 
@@ -25,7 +26,7 @@ const StyledPlantOption = styled.div`
   height: 40px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 16px;
   text-transform: capitalize;

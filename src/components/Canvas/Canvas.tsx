@@ -8,7 +8,6 @@ import Card from './Card'
 export default function Canvas() {
     
     const designCtx = useContext(DesignContext)
-    console.log(designCtx);
 
     const plants = designCtx.selectedPlants
 
@@ -28,7 +27,6 @@ export default function Canvas() {
             card.style.left = e.clientX + parseInt(xoffset, 10) + "px";
             card.style.top = e.clientY + parseInt(yoffset, 10) + "px";
         }
-    
     }
     
     return (
@@ -45,9 +43,9 @@ export default function Canvas() {
 }
 
 const StyledCanvas = styled.div`
-    height: 100vh;
-    width: 500px;
-    flex: 5;
+    height: 100%;
+    width: 100%;
+    flex: 4;
     overflow: scroll;
     background: white;
 `
