@@ -14,7 +14,6 @@ interface IProps {
 }
 
 export default function Card({plant}: IProps) {
-  const [hightlighted, setHighlighted] = useState(false)
   const designCtx = useContext(DesignContext)
 
     function onDragStart(e: any) {
@@ -56,16 +55,13 @@ export default function Card({plant}: IProps) {
         widthInMetres={plant.widthInMetres}
         onKeyDown={onKeyDown}
         tabIndex={0}
-        hightlighted={hightlighted}
-        onFocus={() => setHighlighted(true)}
-        onBlur={() => setHighlighted(false)}
       >
         <p>{plant.name}</p>
       </StyledCard>
     )
 }
 
-const StyledCard = styled.div<{widthInMetres: number, hightlighted: boolean}>`
+const StyledCard = styled.div<{widthInMetres: number}>`
   ${({widthInMetres}) => {
     const diameter = metresToPx(widthInMetres)
     const fontSize = diameter < 50 ? 12 : 16
@@ -80,15 +76,14 @@ const StyledCard = styled.div<{widthInMetres: number, hightlighted: boolean}>`
   cursor: pointer;
   border: ${GlobalStyles.colors.tertiary600} 1px solid;
   color: ${GlobalStyles.colors.tertiary600};
-  ${({hightlighted}) => {
-    return hightlighted && `
-      border: #309bbf  1px solid;
-      color: #309bbf;
-      `
-  }}
   position: absolute;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  :focus {
+    border: 1px solid #309bbf;
+    color: #309bbf;
+    outline: 1px solid #309bbf;
+  }
 `
