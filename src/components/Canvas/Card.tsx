@@ -48,7 +48,7 @@ export default function Card({plant}: IProps) {
     }
 
     return (
-      <StyledCard
+      <CardContainer
         id={plant.itemId}
         draggable={true}
         onDragStart={onDragStart}
@@ -57,11 +57,11 @@ export default function Card({plant}: IProps) {
         tabIndex={0}
       >
         <p>{plant.name}</p>
-      </StyledCard>
+      </CardContainer>
     )
 }
 
-const StyledCard = styled.div<{widthInMetres: number}>`
+const CardContainer = styled.div<{widthInMetres: number}>`
   ${({widthInMetres}) => {
     const diameter = metresToPx(widthInMetres)
     const fontSize = diameter < 50 ? 12 : 16

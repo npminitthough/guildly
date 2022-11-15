@@ -5,14 +5,12 @@ import {DesignContext} from '../../store/design-context'
 
 import Card from './Card'
 
-export default function Canvas() {
-    
-    const designCtx = useContext(DesignContext)
-
-    const plants = designCtx.selectedPlants
+export default function Canvas() {    
+    const designCtx = useContext(DesignContext);
+    const plants = designCtx.selectedPlants;
 
     function onDragOver (e:any) {
-        e.preventDefault()
+        e.preventDefault();
     }
 
     function onDrop(e: any) {
@@ -30,19 +28,18 @@ export default function Canvas() {
     }
     
     return (
-        <StyledCanvas onDragOver={onDragOver} onDrop={onDrop}>
+        <CanvasContainer onDragOver={onDragOver} onDrop={onDrop}>
             {
               plants.map(plant => {
                   return <Card key={plant.itemId} plant={plant} />
               })
-            }
-            
-        </StyledCanvas>
+            }            
+        </CanvasContainer>
       
     )
 }
 
-const StyledCanvas = styled.div`
+const CanvasContainer = styled.div`
     height: 100%;
     width: 100%;
     flex: 4;

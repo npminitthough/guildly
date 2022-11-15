@@ -13,3 +13,8 @@ export interface ICategory {
     name: string;
     plants: IPlant[]
 }
+
+export interface IMeasurementDisplay {
+    value: number;
+    units: 'm' | 'cm'
+}

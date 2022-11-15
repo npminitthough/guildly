@@ -4,9 +4,8 @@ import styled from 'styled-components'
 import GlobalStyles from '../../constants/styles'
 
 export default function Menu({children}: any) {  
-
     return (
-        <MenuWrapper>
+        <MenuWrapper id="side-menu">
             {children}
         </MenuWrapper>
     )
@@ -20,6 +19,9 @@ const MenuWrapper = styled.aside`
     color: white;
     font-family: monospace;
     overflow-y: scroll;
+    scrollbar-color:  ${GlobalStyles.colors.secondary500} ${GlobalStyles.colors.primary500};
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
     ::-webkit-scrollbar-thumb {
         background-color: ${GlobalStyles.colors.secondary500};
     }
