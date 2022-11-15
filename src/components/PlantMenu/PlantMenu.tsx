@@ -10,7 +10,6 @@ const PlantMenuWrapper = styled.div`
 
 export default function PlantMenu() {
   const PlantCatalogueContext = useContext(PlantCatalogueCtx);
-  console.log(PlantCatalogueContext);
   const categories = PlantCatalogueContext || []
   
   return (
