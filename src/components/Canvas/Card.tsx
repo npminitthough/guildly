@@ -20,14 +20,13 @@ export default function Card({plant}: IProps) {
       const target = e.target;
 
       e.dataTransfer.setData("cardId", target.id);
-
       e.dataTransfer.setData(
-        "xoffset",
-        target.getBoundingClientRect().left - e.clientX
+        "offsetheight",
+        target.offsetHeight
       );
       e.dataTransfer.setData(
-        "yoffset",
-        target.getBoundingClientRect().top - e.clientY
+        "offsetwidth",
+        target.offsetWidth
       );
     }
 
