@@ -42,6 +42,7 @@ const CategoryHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: left;
   font-size: 16px;
   text-transform: capitalize;
   justify-content: space-between;

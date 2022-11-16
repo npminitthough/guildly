@@ -37,5 +37,6 @@ const PlantInfoContainer = styled.div`
     padding: 0px 20px;
     color:  ${GlobalStyles.colors.primary600};
     background-color: white;
+    text-align: left;
     z-index: 2;
 `

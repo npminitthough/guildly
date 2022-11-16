@@ -15,7 +15,7 @@ const MenuWrapper = styled.aside`
     flex:1;
     background: ${GlobalStyles.colors.primary600};
     height: 100%;
-    padding: 20px 0;
+    padding: 0;
     color: white;
     font-family: monospace;
     overflow-y: scroll;
