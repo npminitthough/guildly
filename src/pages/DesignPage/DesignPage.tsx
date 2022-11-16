@@ -8,7 +8,7 @@ import PlantMenu from '../../components/PlantMenu/PlantMenu'
 import Canvas from '../../components/Canvas/Canvas'
 
 export default function DesignPage() {
-  return <Container className="thingy">
+  return <Container className="l-design-page">
     <Menu style={{flex: 1}}>
       <PlantMenu />
     </Menu>
@@ -19,6 +19,6 @@ export default function DesignPage() {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  margin: 20px;
+  margin: 0px;
   display: flex;
 `;
