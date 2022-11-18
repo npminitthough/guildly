@@ -1,27 +1,18 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
-import PLANT_CATALOGUE from './plant-catalogue'
-import {ICategory} from '../ts/interfaces'
+import PLANT_CATALOGUE from "./plant-catalogue";
+import { ICategory } from "../ts/interfaces";
 
 export const PlantCatalogueCtx = createContext<ICategory[] | null>(null);
 
-// const initialPlantCatalogueCtx: CategoryInterface[] = [
-//     {
-//         name: "",
-//         plants: [{
-//             id: "",
-//             name: "",
-//             widthInMetres: 0
-//         }]
-
-//     }
-   
-// ];
-
 const initialPlantCatalogueCtx: ICategory[] = PLANT_CATALOGUE;
 
-const PlantCatalogueContextProvider = ({children}: any) => {
-    return <PlantCatalogueCtx.Provider value={initialPlantCatalogueCtx}>{children}</PlantCatalogueCtx.Provider>
-}
+const PlantCatalogueContextProvider = ({ children }: any) => {
+  return (
+    <PlantCatalogueCtx.Provider value={initialPlantCatalogueCtx}>
+      {children}
+    </PlantCatalogueCtx.Provider>
+  );
+};
 
 export default PlantCatalogueContextProvider;

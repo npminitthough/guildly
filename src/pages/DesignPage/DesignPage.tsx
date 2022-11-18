@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import GlobalStyles from '../../constants/styles';
-
 import Menu from '../../components/Menu/Menu';
 import PlantMenu from '../../components/PlantMenu/PlantMenu'
 import Canvas from '../../components/Canvas/Canvas'
