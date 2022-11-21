@@ -2,13 +2,13 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { DesignContext } from "../../store/design-context";
-import { IPlantWithItemId } from "../../ts/interfaces";
+import { ICard } from "../../ts/interfaces";
 
 import Card from "./Card";
 
 export default function Canvas() {
   const designCtx = useContext(DesignContext);
-  const plants = designCtx.selectedPlants;
+  const cards = designCtx.cards;
 
   function onDragOver(e: any) {
     e.preventDefault();
@@ -39,7 +39,7 @@ export default function Canvas() {
         e.clientX - edgeOfmenu - cardOffsetWidth / 2 + scrollLeft + "px";
       card.style.top = e.clientY - cardOffsetHeight / 2 + scrollTop + "px";
 
-      designCtx.updatePlantPos(cardId, {
+      designCtx.updateCardPosition(cardId, {
         left: card.style.left,
         top: card.style.top,
       });
@@ -54,8 +54,8 @@ export default function Canvas() {
       className="l-canvas"
     >
       <CanvasContainer>
-        {plants.map((plant: IPlantWithItemId) => {
-          return <Card key={plant.itemId} plant={plant} />;
+        {cards.map((card: ICard) => {
+          return <Card key={card.itemId} {...card} />;
         })}
       </CanvasContainer>
     </CanvasOuterContainer>

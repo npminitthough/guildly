@@ -2,11 +2,11 @@
 import { ArrowKeys } from "../ts/enums";
 import arrowKeyShift from "../constants/arrowKeyShift";
 
-import { IPlantPosition } from "../ts/interfaces";
+import { ICardPosition } from "../ts/interfaces";
 
 export function onKeyDown(
   e: any, 
-  elementShiftCb: (id: string, pos: IPlantPosition) => void,
+  elementShiftCb: (id: string, pos: ICardPosition) => void,
   elementDeleteCb: (id: string) => void
 ) {
   const cardId = e.target.id;

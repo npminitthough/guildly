@@ -1,3 +1,6 @@
+import { string } from 'prop-types';
+import { CardType } from './enums'
+
 export interface IPlant {
   name: string;
   widthInMetres: number;
@@ -5,9 +8,20 @@ export interface IPlant {
   rootStock?: string;
 }
 
-export interface IPlantPosition {
-  left: string;
-  top: string;
+export interface ICard extends ICardMetaData {
+  itemId: string;
+  position: ICardPosition;
+}
+
+export interface ICardMetaData {
+  name?: string;
+  dimensions: ICardDimensions;
+  type: CardType;
+}
+
+export interface ICardDimensions {
+  xInMetres: number;
+  yInMetres?: number;
 }
 
 export interface IScrollPosition {
@@ -15,9 +29,9 @@ export interface IScrollPosition {
   scrollLeft: number;
 }
 
-export interface IPlantWithItemId extends IPlant {
-  itemId: string;
-  position: IPlantPosition;
+export interface ICardPosition {
+  left: string;
+  top: string;
 }
 
 export interface ICategory {

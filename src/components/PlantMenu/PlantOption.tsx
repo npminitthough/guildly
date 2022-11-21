@@ -7,6 +7,7 @@ import { DesignContext } from "../../store/design-context";
 import { getDisplayValue } from "../../utils/conversions";
 
 import PlantInfo, { PlantInfoItem } from "../../components/PlantInfo/PlantInfo";
+import { CardType } from "../../ts/enums";
 
 interface IProps {
   plant: IPlant;
@@ -16,7 +17,13 @@ export default function PlantOption({ plant }: IProps) {
   const designCtx = useContext(DesignContext);
 
   function onClick() {
-    designCtx.addToCanvas(plant);
+    designCtx.addToCanvas({
+      name: plant.name,
+      dimensions: {
+        xInMetres: plant.widthInMetres,
+      },
+      type: CardType.plant,
+    });
   }
 
   function onMouseOver(e: any) {

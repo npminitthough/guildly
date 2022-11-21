@@ -1,57 +1,69 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { IPlantWithItemId, IPlantPosition } from "../../ts/interfaces";
+import { ICard, ICardPosition } from "../../ts/interfaces";
 import { metresToPx } from "../../utils/conversions";
 import { DesignContext } from "../../store/design-context";
-import { onKeyDown, onDragStart } from '../../utils/elementInteraction'; 
+import { onKeyDown, onDragStart } from "../../utils/elementInteraction";
 
 import GlobalStyles from "../../constants/styles";
 
-interface IProps {
-  plant: IPlantWithItemId;
-}
-
-export default function Card({ plant }: IProps) {
+export default function Card(props: ICard) {
   const designCtx = useContext(DesignContext);
+  const { itemId, position, name, dimensions, type } = props;
 
-  function elementShiftCb (id: string, pos: IPlantPosition) {
-    designCtx.updatePlantPos(id, pos)
+  function elementShiftCb(id: string, pos: ICardPosition) {
+    designCtx.updateCardPosition(id, pos);
   }
 
-  function elementDeleteCb (id: string) {
-    designCtx.removeFromCanvas(id);
+  function elementDeleteCb(id: string) {
+    designCtx.removeFromCanvas(id, type);
   }
 
   return (
     <CardContainer
-      id={plant.itemId}
+      id={itemId}
       draggable={true}
       onDragStart={onDragStart}
-      widthInMetres={plant.widthInMetres}
+      xInMetres={dimensions.xInMetres}
+      yInMetres={dimensions.yInMetres}
       onKeyDown={(e) => onKeyDown(e, elementShiftCb, elementDeleteCb)}
       tabIndex={0}
-      position={plant.position}
+      position={position}
     >
-      <p>{plant.name}</p>
+      {name && <p>{name}</p>}
     </CardContainer>
   );
 }
 
 const CardContainer = styled.div<{
-  widthInMetres: number;
-  position: IPlantPosition;
+  xInMetres: number;
+  yInMetres: number | undefined;
+  position: ICardPosition | undefined;
 }>`
-  ${({ widthInMetres }) => {
-    const diameter = metresToPx(widthInMetres);
-    const fontSize = diameter < 50 ? 12 : 16;
+  ${({ xInMetres }) => {
+    const widthPx = metresToPx(xInMetres);
+    const fontSize = widthPx < 50 ? 12 : 16;
 
     return `
-      border-radius: ${diameter / 2}px;
-      height: ${diameter}px;
-      width: ${diameter}px;
-      font-size: ${fontSize}px;
-    `;
+        width: ${widthPx}px;
+        font-size: ${fontSize}px;
+      `;
+  }}
+  ${({ yInMetres, xInMetres }) => {
+    const widthPx = metresToPx(xInMetres);
+    if (yInMetres) {
+      const heightPx = metresToPx(yInMetres);
+
+      return `
+        height: ${heightPx}px;
+      `;
+    } else {
+      return `
+        height: ${widthPx}px;
+        border-radius: ${widthPx / 2}px;
+      `;
+    }
   }}
   cursor: pointer;
   border: ${GlobalStyles.colors.tertiary600} 1px solid;
@@ -70,9 +82,9 @@ const CardContainer = styled.div<{
     return (
       position &&
       `
-      left: ${position.left};
-      top: ${position.top};
-    `
+        left: ${position.left};
+        top: ${position.top};
+      `
     );
   }}
 `;

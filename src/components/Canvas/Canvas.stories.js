@@ -4,6 +4,7 @@ import Canvas from "./Canvas";
 import DesignContextProvider, {
   DesignContext,
 } from "../../store/design-context";
+import { CardType } from "../../ts/enums";
 
 export default {
   title: "Canvas",
@@ -12,11 +13,11 @@ export default {
 
 export const MyCanvas = () => {
   return (
-    <DesignContextProvider
-      initialValue={{ selectedPlants: [{ name: "test", itemID: "123" }] }}
-    >
+    <DesignContextProvider>
       <Test />
-      <Canvas />
+      <div style={{height: '100vh'}}>
+        <Canvas />
+      </div>
     </DesignContextProvider>
   );
 };
@@ -28,17 +29,37 @@ const Test = () => {
     <button
       onClick={() => {
         designCtx.addToCanvas({
-          id: "1",
-          itemId: "123",
+          cardType: CardType.plant,
           name: "Apple",
-          widthInMetres: 2,
+          dimensions: {
+            xInMetres: 2,
+          }
         });
 
         designCtx.addToCanvas({
-          id: "1",
-          itemId: "1253",
+          cardType: CardType.custom,
           name: "Apple",
-          widthInMetres: 2,
+          dimensions: {
+            xInMetres: 3,
+          }
+        });
+
+        designCtx.addToCanvas({
+          cardType: CardType.custom,
+          name: "Wormery",
+          dimensions: {
+            xInMetres: 0.6,
+            yInMetres: 0.3
+          }
+        });
+
+        designCtx.addToCanvas({
+          cardType: CardType.custom,
+          name: "",
+          dimensions: {
+            xInMetres: 2,
+            yInMetres: 2
+          }
         });
       }}
     >
