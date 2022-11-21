@@ -26,7 +26,6 @@ export const MyPlantMenu = () => {
 
 function ExampleDisplay() {
   const designCtx = useContext(DesignContext);
-  console.log(designCtx);
 
   return (
     <div

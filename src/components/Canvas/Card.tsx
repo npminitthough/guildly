@@ -1,87 +1,69 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { IPlantWithItemId, IPlantPosition } from "../../ts/interfaces";
+import { ICard, ICardPosition } from "../../ts/interfaces";
 import { metresToPx } from "../../utils/conversions";
 import { DesignContext } from "../../store/design-context";
+import { onKeyDown, onDragStart } from "../../utils/elementInteraction";
 
 import GlobalStyles from "../../constants/styles";
-import { ArrowKeys } from "../../ts/enums";
-import arrowKeyShift from "../../constants/arrowKeyShift";
 
-interface IProps {
-  plant: IPlantWithItemId;
-}
-
-export default function Card({ plant }: IProps) {
+export default function Card(props: ICard) {
   const designCtx = useContext(DesignContext);
+  const { itemId, position, name, dimensions, type } = props;
 
-  function onDragStart(e: any) {
-    const target = e.target;
-
-    e.dataTransfer.setData("cardId", target.id);
-    e.dataTransfer.setData("offsetheight", target.offsetHeight);
-    e.dataTransfer.setData("offsetwidth", target.offsetWidth);
+  function elementShiftCb(id: string, pos: ICardPosition) {
+    designCtx.updateCardPosition(id, pos);
   }
 
-  function onKeyDown(e: any) {
-    if (Object.keys(arrowKeyShift).includes(e.key)) {
-      e.preventDefault();
-      const cardId = e.target.id;
-
-      if ([ArrowKeys.up, ArrowKeys.down].includes(e.key)) {
-        const top = e.target.offsetTop + arrowKeyShift[e.key] + "px";
-        e.target.style.top = top;
-
-        designCtx.updatePlantPos(cardId, {
-          left: e.target.offsetLeft + "px",
-          top,
-        });
-      } else {
-        const left = e.target.offsetLeft + arrowKeyShift[e.key] + "px";
-        e.target.style.left = left;
-
-        designCtx.updatePlantPos(cardId, {
-          left,
-          top: e.target.offsetTop + "px",
-        });
-      }
-    }
-
-    if (e.key === "Backspace") {
-      designCtx.removeFromCanvas(plant.itemId);
-    }
+  function elementDeleteCb(id: string) {
+    designCtx.removeFromCanvas(id, type);
   }
 
   return (
     <CardContainer
-      id={plant.itemId}
+      id={itemId}
       draggable={true}
       onDragStart={onDragStart}
-      widthInMetres={plant.widthInMetres}
-      onKeyDown={onKeyDown}
+      xInMetres={dimensions.xInMetres}
+      yInMetres={dimensions.yInMetres}
+      onKeyDown={(e) => onKeyDown(e, elementShiftCb, elementDeleteCb)}
       tabIndex={0}
-      position={plant.position}
+      position={position}
     >
-      <p>{plant.name}</p>
+      {name && <p>{name}</p>}
     </CardContainer>
   );
 }
 
 const CardContainer = styled.div<{
-  widthInMetres: number;
-  position: IPlantPosition;
+  xInMetres: number;
+  yInMetres: number | undefined;
+  position: ICardPosition | undefined;
 }>`
-  ${({ widthInMetres }) => {
-    const diameter = metresToPx(widthInMetres);
-    const fontSize = diameter < 50 ? 12 : 16;
+  ${({ xInMetres }) => {
+    const widthPx = metresToPx(xInMetres);
+    const fontSize = widthPx < 50 ? 12 : 16;
 
     return `
-      border-radius: ${diameter / 2}px;
-      height: ${diameter}px;
-      width: ${diameter}px;
-      font-size: ${fontSize}px;
-    `;
+        width: ${widthPx}px;
+        font-size: ${fontSize}px;
+      `;
+  }}
+  ${({ yInMetres, xInMetres }) => {
+    const widthPx = metresToPx(xInMetres);
+    if (yInMetres) {
+      const heightPx = metresToPx(yInMetres);
+
+      return `
+        height: ${heightPx}px;
+      `;
+    } else {
+      return `
+        height: ${widthPx}px;
+        border-radius: ${widthPx / 2}px;
+      `;
+    }
   }}
   cursor: pointer;
   border: ${GlobalStyles.colors.tertiary600} 1px solid;
@@ -100,9 +82,9 @@ const CardContainer = styled.div<{
     return (
       position &&
       `
-      left: ${position.left};
-      top: ${position.top};
-    `
+        left: ${position.left};
+        top: ${position.top};
+      `
     );
   }}
 `;
