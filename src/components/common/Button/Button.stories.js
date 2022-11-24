@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button from "./Button";
 
 export default {
   title: "Button",
@@ -6,5 +6,8 @@ export default {
 };
 
 export const MyButton = () => {
-  return <Button>Add</Button>
-}
+  return <div>
+    <Button>primary</Button>
+    <Button variant="secondary">secondary</Button>
+  </div>;
+};

@@ -24,6 +24,7 @@ const defaultDesignContext = {
   addToCanvas: (cardMetaData: ICardMetaData) => {},
   updateCardPosition: (itemId: string, pos: ICardPosition) => {},
   removeFromCanvas: (itemId: string, cardType: CardType) => {},
+  clearAll: () => {}
 };
 
 export const DesignContext = createContext(defaultDesignContext);
@@ -90,6 +91,8 @@ export default function DesignContextProvider({ children }: IProps) {
     });
   };
 
+  const clearAll = () => updateCards([]);
+
   return (
     <DesignContext.Provider
       value={{
@@ -99,6 +102,7 @@ export default function DesignContextProvider({ children }: IProps) {
         updateCardPosition,
         cards,
         addToCanvas,
+        clearAll
       }}
     >
       {children}
