@@ -1,15 +1,19 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, {Interpolation} from "styled-components";
 
 import { DesignContext } from "../../store/design-context";
 import { ICard } from "../../ts/interfaces";
 
 import Card from "./Card";
 
-export default function Canvas() {
+interface IProps {
+  styles: Interpolation<React.CSSProperties>
+}
+
+export default function Canvas({styles}: IProps) {
   const designCtx = useContext(DesignContext);
   const cards = designCtx.cards;
-
+  
   function onDragOver(e: any) {
     e.preventDefault();
   }
@@ -33,11 +37,14 @@ export default function Canvas() {
     const card = document.getElementById(cardId);
     const sideMenu = document.getElementById("side-menu");
     const edgeOfmenu = sideMenu ? sideMenu.getBoundingClientRect().right : 0;
+    
+    const nav = document.getElementById("navbar");
+    const bottomOfNav = nav ? nav.getBoundingClientRect().bottom : 0;
 
     if (card && card.style) {
       card.style.left =
         e.clientX - edgeOfmenu - cardOffsetWidth / 2 + scrollLeft + "px";
-      card.style.top = e.clientY - cardOffsetHeight / 2 + scrollTop + "px";
+      card.style.top = e.clientY - cardOffsetHeight / 2 + scrollTop - bottomOfNav + "px";
 
       designCtx.updateCardPosition(cardId, {
         left: card.style.left,
@@ -48,6 +55,7 @@ export default function Canvas() {
 
   return (
     <CanvasOuterContainer
+      styles={styles}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onScroll={onScroll}
@@ -62,7 +70,10 @@ export default function Canvas() {
   );
 }
 
-const CanvasOuterContainer = styled.div`
+const CanvasOuterContainer = styled.div<{styles: Interpolation<React.CSSProperties>}>`
+  ${({ styles }) => {
+    return styles;
+  }}
   height: 100%;
   width: 100%;
   flex: 4;
