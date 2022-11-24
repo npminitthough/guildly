@@ -30,7 +30,7 @@ export default function PlantOption({ plant }: IProps) {
     const plantInfoComponent = e.target.nextElementSibling;
     const pageScrollPosY = document.documentElement.scrollTop;
     const pageScrollPosX = document.documentElement.scrollLeft;
-    const sideMenu = document.getElementById("side-menu");
+    const sideMenu = document.getElementById("design-page__side-menu");
     const edgeOfmenu = sideMenu ? sideMenu.getBoundingClientRect().right : 0;
 
     // put the <PlantInfo> component adjacent to the hovered menu option.
