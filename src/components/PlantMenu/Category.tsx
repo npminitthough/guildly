@@ -52,7 +52,7 @@ const CategoryHeader = styled.div`
 
 const PlantOptions = styled.div`
   max-height: 160px;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: ${GlobalStyles.colors.primary500};
   scrollbar-color:  ${GlobalStyles.colors.secondary500} ${GlobalStyles.colors.primary500};
   scrollbar-width: thin;
