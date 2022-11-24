@@ -36,7 +36,7 @@ function ExampleDisplay() {
         marginTop: "20px",
       }}
     >
-      {designCtx.selectedPlants.map((plant, i) => {
+      {designCtx.cards.map((plant, i) => {
         return <p key={i}>{plant.name}</p>;
       })}
     </div>

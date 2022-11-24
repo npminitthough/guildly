@@ -4,9 +4,7 @@ import styled from "styled-components";
 import { IPlant } from "../../ts/interfaces";
 import { DesignContext } from "../../store/design-context";
 
-import { getDisplayValue } from "../../utils/conversions";
-
-import PlantInfo, { PlantInfoItem } from "../../components/PlantInfo/PlantInfo";
+import PlantInfo from "../../components/PlantInfo/PlantInfo";
 import { CardType } from "../../ts/enums";
 
 interface IProps {
@@ -39,11 +37,7 @@ export default function PlantOption({ plant }: IProps) {
     plantInfoComponent.style.left = edgeOfmenu + pageScrollPosX + "px";
   }
 
-  const { name, widthInMetres, heightInMetres, rootStock } = plant;
-  const widthDisplayValue = getDisplayValue(widthInMetres);
-  const heightDisplayValue = heightInMetres
-    ? getDisplayValue(heightInMetres)
-    : null;
+  const { name } = plant;
 
   return (
     <div>
@@ -51,19 +45,7 @@ export default function PlantOption({ plant }: IProps) {
         {name}
       </PlantOptionContainer>
 
-      <PlantInfo id="plant-info">
-        <PlantInfoItem
-          label="Max spread"
-          value={`${widthDisplayValue.value}${widthDisplayValue.units}`}
-        />
-        {heightDisplayValue && (
-          <PlantInfoItem
-            label="Max height"
-            value={`${heightDisplayValue.value}${heightDisplayValue.units}`}
-          />
-        )}
-        {rootStock && <PlantInfoItem label="Root stock" value={rootStock} />}
-      </PlantInfo>
+      <PlantInfo id="plant-info" plant={plant} />
     </div>
   );
 }
@@ -78,6 +60,12 @@ const PlantOptionContainer = styled.div`
   font-size: 16px;
   text-transform: capitalize;
   cursor: pointer;
+  :hover {
+    box-shadow: inset 0.5px 0 1.5px white;
+  }
+  ~ #plant-info {
+    display: none;
+  }
   :hover ~ #plant-info {
     display: block;
   }
