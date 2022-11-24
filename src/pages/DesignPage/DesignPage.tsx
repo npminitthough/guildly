@@ -16,11 +16,11 @@ export default function DesignPage() {
         height: '100vh'
       }}
     >
-      <Nav id="design-page__navbar" height={navHeight}>
+      <Nav height={navHeight}>
         <Toolbar />
       </Nav>
       <Container className="l-design-page" navHeight={navHeight}>
-        <Menu styles={{ flex: 1 }} id="design-page__side-menu">
+        <Menu styles={{ flex: 1 }}>
           <PlantMenu />
         </Menu>
         <Canvas styles={{ flex: 4 }} />
