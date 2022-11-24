@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import ToolbarDropdown from "./ToolbarDropdown";
 import CircleForm from "./ToolbarForm/CircleForm/CircleForm";
-import RectForm from "./ToolbarForm/RectForm/RectForm"
+import RectForm from "./ToolbarForm/RectForm/RectForm";
 import ToolbarButton from "./ToolbarButton";
 
 import CircleIcon from "./img/ellipse-outline.svg";

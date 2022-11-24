@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Nav from "../../components/common/Nav/Nav";
-import Toolbar from "../../components/ToolBar/Toolbar";
+import Toolbar from "../../components/Toolbar/Toolbar";
 import Menu from "../../components/Menu/Menu";
 import PlantMenu from "../../components/PlantMenu/PlantMenu";
 import Canvas from "../../components/Canvas/Canvas";
