@@ -1,12 +1,14 @@
+import React, { ReactNode } from 'react'
 import styled from "styled-components";
 import GlobalStyles from "../../../constants/styles";
 
 interface IProps {
-  children: string;
+  children: string | ReactNode;
+  [x:string]: any;
 }
 
-export default function Button({children}: IProps) {
-  return <StyledButton>{children}</StyledButton>
+export default function Button({children, ...rest}: IProps) {
+  return <StyledButton {...rest}>{children}</StyledButton>
 }
 
 const StyledButton = styled.button`
