@@ -74,9 +74,9 @@ const CardContainer = styled.div<{
   align-items: center;
   justify-content: center;
   :focus {
-    border: 1px solid #309bbf;
-    color: #309bbf;
-    outline: 1px solid #309bbf;
+    border: 1px solid ${GlobalStyles.colors.highlight500};
+    color: ${GlobalStyles.colors.highlight500};
+    outline: 1px solid ${GlobalStyles.colors.highlight500};
   }
   ${({ position }) => {
     return (
