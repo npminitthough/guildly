@@ -1,4 +1,3 @@
-import { string } from 'prop-types';
 import { CardType } from './enums'
 
 export interface IPlant {
@@ -6,6 +5,11 @@ export interface IPlant {
   widthInMetres: number;
   heightInMetres?: number;
   rootStock?: string;
+  insectAttractor?: boolean;
+  nitrogenFixer?: boolean;
+  nutrientAccumulator?: boolean;
+  biofumigant?: boolean;
+  imageUrl?: string;
 }
 
 export interface ICard extends ICardMetaData {

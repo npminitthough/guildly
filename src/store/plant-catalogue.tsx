@@ -6,36 +6,42 @@ const SMALL_TREES = {
       widthInMetres: 3,
       heightInMetres: 3,
       rootStock: "quince C",
+      insectAttractor: true,
     },
     {
       name: "plum",
       widthInMetres: 3,
       heightInMetres: 2.3,
       rootStock: "VVA-1",
+      insectAttractor: true,
     },
     {
       name: "peach",
       widthInMetres: 3,
       heightInMetres: 2.3,
       rootStock: "VVA-1",
+      insectAttractor: true,
     },
     {
       name: "apricot",
       widthInMetres: 3,
       heightInMetres: 2.3,
       rootStock: "VVA-1",
+      insectAttractor: true,
     },
     {
       name: "apple",
       widthInMetres: 1.5,
       heightInMetres: 1.8,
       rootStock: "M27",
+      insectAttractor: true,
     },
     {
       name: "cherry",
       widthInMetres: 1.5,
       heightInMetres: 1.5,
       rootStock: "gisela 5",
+      insectAttractor: true,
     },
   ],
 };
@@ -47,41 +53,54 @@ const SHRUBS = {
       name: "autumn olive",
       widthInMetres: 4,
       heightInMetres: 4.5,
+      nitrogenFixer: true,
+      imageUrl: "https://northernwoodlands.org/images/made/images/articles/olive_750_515_65.jpg"
     },
     {
       name: "siberian pea tree",
       widthInMetres: 4,
       heightInMetres: 6,
+      nitrogenFixer: true,
+      insectAttractor: true,
+      imageUrl: "https://i.shgcdn.com/c8002b83-e00a-40d6-95a8-4edff15538c3/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
     },
     {
       name: "gooseberry",
       widthInMetres: 1,
       heightInMetres: 1.2,
+      insectAttractor: true,
+      imageUrl: "https://www.ashridgetrees.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/g/o/goose-new.jpg"
     },
     {
       name: "blackcurrant",
       widthInMetres: 1,
       heightInMetres: 1.8,
+      insectAttractor: true,
+      imageUrl: "https://plantura.garden/uk/wp-content/uploads/sites/2/2021/09/black-currant-1024x684.jpg?x96810"
     },
     {
       name: "redcurrant",
       widthInMetres: 1,
       heightInMetres: 1.8,
+      insectAttractor: true,
     },
     {
       name: "fuschia",
       widthInMetres: 2,
       heightInMetres: 3,
+      insectAttractor: true,
     },
     {
       name: "chokeberry",
       widthInMetres: 3,
       heightInMetres: 2.5,
+      insectAttractor: true,
     },
     {
       name: "california lilac",
       widthInMetres: 2,
       heightInMetres: 3,
+      insectAttractor: true,
     },
   ],
 };
