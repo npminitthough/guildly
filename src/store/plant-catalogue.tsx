@@ -2,11 +2,12 @@ const SMALL_TREES = {
   name: "small trees",
   plants: [
     {
-      name: "pear tree",
+      name: "pear",
       widthInMetres: 3,
       heightInMetres: 3,
       rootStock: "quince C",
       insectAttractor: true,
+      imageUrl: "https://www.coopersofstortford.co.uk/images/products/medium/XYG81i.jpg"
     },
     {
       name: "plum",
@@ -14,6 +15,7 @@ const SMALL_TREES = {
       heightInMetres: 2.3,
       rootStock: "VVA-1",
       insectAttractor: true,
+      imageUrl: "https://www.blackmoor.co.uk/images/images_big/Vicnewsq.JPG"
     },
     {
       name: "peach",
@@ -21,6 +23,7 @@ const SMALL_TREES = {
       heightInMetres: 2.3,
       rootStock: "VVA-1",
       insectAttractor: true,
+      imageUrl: "https://www.gardeningknowhow.com/wp-content/uploads/2018/09/dwarf-peaches.jpg"
     },
     {
       name: "apricot",
@@ -28,6 +31,7 @@ const SMALL_TREES = {
       heightInMetres: 2.3,
       rootStock: "VVA-1",
       insectAttractor: true,
+      imageUrl: "https://gardenerspath.com/wp-content/uploads/2021/08/How-to-Grow-Apricots-FB.jpg"
     },
     {
       name: "apple",
@@ -35,6 +39,7 @@ const SMALL_TREES = {
       heightInMetres: 1.8,
       rootStock: "M27",
       insectAttractor: true,
+      imageUrl: "https://cdn.shopify.com/s/files/1/0513/3428/3424/products/Screenshot2021-10-27at15.35.46copy.png?v=1646117075"
     },
     {
       name: "cherry",
@@ -42,6 +47,7 @@ const SMALL_TREES = {
       heightInMetres: 1.5,
       rootStock: "gisela 5",
       insectAttractor: true,
+      imageUrl: "https://cdn.mos.cms.futurecdn.net/BJ74Zg5pp2dr5e2uQC9jL5.jpg"
     },
   ],
 };
@@ -112,11 +118,13 @@ const PERENNIAL_VEGETABLES = {
       name: "salad burnett",
       widthInMetres: 0.3,
       heightInMetres: 0.5,
+      imageUrl: "https://cdn.shopify.com/s/files/1/0422/1766/8763/products/SaladBurnet2_1200x1200.jpg?v=1653885442"
     },
     {
       name: "lambs lettuce",
       widthInMetres: 0.1,
       heightInMetres: 0.2,
+      imageUrl: "https://m.media-amazon.com/images/I/71Bm9KkopcL._AC_SL1368_.jpg"
     },
     {
       name: "chicory",
@@ -178,11 +186,13 @@ const ORNAMENTAL_PERENNIALS = {
       name: "bergamot",
       widthInMetres: 0.5,
       heightInMetres: 0.5,
+      imageUrl: "https://www.rocketgardens.co.uk/wp-content/uploads/2016/11/Wild-Bergamot.jpg"
     },
     {
       name: "persicaria",
       widthInMetres: 0.2,
       heightInMetres: 1,
+      imageUrl: "https://images.immediate.co.uk/production/volatile/sites/18/2020/11/MG_7032-Persicaria-Taurus-082c99a.jpg"
     },
     {
       name: "red valarian",
