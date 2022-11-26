@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GlobalStyles from '../../constants/styles'
 
 import {ICategory} from '../../ts/interfaces'
+import { CategoryName } from "../../ts/types";
 import PlantOption from './PlantOption'
 
 import ForwardChevron from "./img/chevron-forward-outline.svg";
@@ -29,7 +30,7 @@ export default function Category({ category }: IProps) {
       {showPlantOptions && (
         <PlantOptions>
           {category.plants.map((plant, i) => {
-            return <PlantOption key={i} plant={plant} />;
+            return <PlantOption key={i} plant={plant} category={category.name as CategoryName} />;
           })}
         </PlantOptions>
       )}

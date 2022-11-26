@@ -52,14 +52,10 @@ export default function DesignContextProvider({ children }: IProps) {
   const [cards, updateCards] = useState(initialCardsState);
 
   const addToCanvas = (cardMetaData: ICardMetaData) => {
-    const { name, dimensions, type } = cardMetaData;
-
     const itemId = nanoid(4);
     const cardData = {
       itemId,
-      name,
-      dimensions,
-      type,
+      ...cardMetaData,
       position: {
         left: setInitialPlantPos(canvasScrollPos).left,
         top: setInitialPlantPos(canvasScrollPos).top,
