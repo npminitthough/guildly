@@ -5,7 +5,7 @@ export default {
   component: Tag,
 };
 
-export const PurpleTag = () => {
+export const ColourTags = () => {
   return (
     <div>
       <Tag color="purple">nitrogen fixer</Tag>
