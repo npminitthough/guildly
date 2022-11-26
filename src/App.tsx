@@ -1,20 +1,34 @@
 import React from 'react';
-import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-import PlantCatalogueContextProvider from './store/plant-catalogue-context'
-import DesignContextProvider from './store/design-context'
+import RootLayout from './pages/RootLayout/RootLayout';
+import HomePage from './pages/HomePage/HomePage';
+import DesignPage from './pages/DesignPage/DesignPage';
 
-import DesignPage from  './pages/DesignPage/DesignPage'
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+        index: true
+      },
+      {
+        path: "design",
+        element: <DesignPage />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <PlantCatalogueContextProvider>
-      <div className="App">
-        <DesignContextProvider>
-          <DesignPage />
-        </DesignContextProvider>
-      </div>
-    </PlantCatalogueContextProvider>
+    <RouterProvider router={router} />
   );
 }
 

@@ -4,7 +4,7 @@ import styled, {Interpolation} from "styled-components";
 import GlobalStyles from "../../constants/styles";
 
 interface IProps {
-  children: ReactNode | ReactNode[],
+  children?: ReactNode | ReactNode[],
   styles: Interpolation<React.CSSProperties>,
 }
 
