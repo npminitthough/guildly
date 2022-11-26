@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import Form from "../ToolBarForm";
+import Form from "../ToolbarForm";
 import Input from "../../../common/Input/Input";
 import Button from "../../../common/Button/Button";
 

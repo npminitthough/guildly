@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import Button from '../../components/common/Button/Button';
+import Button from "../../components/common/Button/Button";
 
-import GuildlyLogo from './img/guildly-logo.svg';
+import GuildlyLogo from "./img/guildly-logo.svg";
 
 const HomePage = () => {
   return (
@@ -10,18 +10,22 @@ const HomePage = () => {
       <Header>
         <Title>Guildly</Title>
         <Caption>Plant guilds for small spaces</Caption>
-        <Logo src={GuildlyLogo} />
+        <Logo src={GuildlyLogo} alt="guildly logo" />
       </Header>
       <ButtonContainer>
-
-      <Button style={{
-        fontSize: '1.3em',
-        borderRadius: '10px',
-        height: 'fit-content',
-        padding: '10px 15px',
-        boxShadow: '2px 3px 6px grey',
-        fontWeight: 'bold'
-      }} to="/design">Start designing</Button>
+        <Button
+          style={{
+            fontSize: "1.3em",
+            borderRadius: "10px",
+            height: "fit-content",
+            padding: "10px 15px",
+            boxShadow: "2px 3px 6px grey",
+            fontWeight: "bold",
+          }}
+          to="/design"
+        >
+          Start designing
+        </Button>
       </ButtonContainer>
     </HomePageContainer>
   );
@@ -36,15 +40,15 @@ const HomePageContainer = styled.div`
   align-items: center;
 `;
 
-const Header= styled.div`
-text-align: center;
-color: white;
+const Header = styled.div`
+  text-align: center;
+  color: white;
   /* justify-self: center;
   align-self: center; */
 `;
 
 const Title = styled.h1`
-  font-family: 'Kirang Haerang', 'Arial';
+  font-family: "Kirang Haerang", "Arial";
   font-size: 6em;
   margin: 0;
   font-weight: 500;
@@ -52,7 +56,7 @@ const Title = styled.h1`
 
 const Caption = styled.h2`
   font-size: 1.2em;
-  font-family: 'League Spartan', sans-serif;
+  font-family: "League Spartan", sans-serif;
   font-weight: 500;
   margin: 0;
 `;
@@ -68,8 +72,12 @@ const ButtonContainer = styled.div`
   margin-top: 100px;
   animation: fadeIn 2s;
   @keyframes fadeIn {
-  0% { opacity: 0.7; }
-  100% { opacity: 1; }
-}
+    0% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 export default HomePage;

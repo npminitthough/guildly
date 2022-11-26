@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import ToolBarForm from "../ToolBarForm";
+import ToolbarForm from "../ToolbarForm";
 import Input from "../../../common/Input/Input";
 import Button from "../../../common/Button/Button";
 
@@ -37,7 +37,7 @@ export default function CircleForm() {
   }
 
   return (
-    <ToolBarForm onSubmit={onSubmit}>
+    <ToolbarForm onSubmit={onSubmit}>
       <Input
         label="label"
         name="name"
@@ -57,6 +57,6 @@ export default function CircleForm() {
         onChange={onInputChange}
       />
       <Button type="submit">Add</Button>
-    </ToolBarForm>
+    </ToolbarForm>
   );
 }
