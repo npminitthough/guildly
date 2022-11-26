@@ -10,7 +10,7 @@ import GlobalStyles from "../../constants/styles";
 
 export default function Card(props: ICard) {
   const designCtx = useContext(DesignContext);
-  const { itemId, position, name, dimensions, type } = props;
+  const { itemId, position, name, dimensions, type, colour } = props;
 
   function elementShiftCb(id: string, pos: ICardPosition) {
     designCtx.updateCardPosition(id, pos);
@@ -30,6 +30,7 @@ export default function Card(props: ICard) {
       onKeyDown={(e) => onKeyDown(e, elementShiftCb, elementDeleteCb)}
       tabIndex={0}
       position={position}
+      colour={colour}
     >
       {name && <p>{name}</p>}
     </CardContainer>
@@ -40,6 +41,7 @@ const CardContainer = styled.div<{
   xInMetres: number;
   yInMetres: number | undefined;
   position: ICardPosition | undefined;
+  colour?: string;
 }>`
   ${({ xInMetres }) => {
     const widthPx = metresToPx(xInMetres);
@@ -66,7 +68,12 @@ const CardContainer = styled.div<{
     }
   }}
   cursor: pointer;
-  border: ${GlobalStyles.colors.tertiary600} 1px solid;
+  ${({colour}) => {
+    return `
+      background-color: ${colour || 'transparent'};
+      border: ${colour || GlobalStyles.colors.tertiary500 + "40"} 1.5px solid;
+    `
+  }}
   color: ${GlobalStyles.colors.tertiary600};
   position: absolute;
   text-align: center;

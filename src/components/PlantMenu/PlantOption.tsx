@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { IPlant } from "../../ts/interfaces";
+import { CategoryName } from "../../ts/types";
 import { DesignContext } from "../../store/design-context";
 
 import PlantInfo from "../../components/PlantInfo/PlantInfo";
@@ -9,9 +10,10 @@ import { CardType } from "../../ts/enums";
 
 interface IProps {
   plant: IPlant;
+  category: CategoryName;
 }
 
-export default function PlantOption({ plant }: IProps) {
+export default function PlantOption({ plant, category }: IProps) {
   const designCtx = useContext(DesignContext);
 
   function onClick() {
@@ -21,6 +23,7 @@ export default function PlantOption({ plant }: IProps) {
         xInMetres: plant.widthInMetres,
       },
       type: CardType.plant,
+      colour: categoryColours[category]
     });
   }
 
@@ -70,3 +73,16 @@ const PlantOptionContainer = styled.div`
     display: block;
   }
 `;
+
+const categoryColours = {
+  "small trees": "#1ff78020",
+  "shrubs": "#ecc90c29",
+  "perennial vegetables": "#5eca2e42",
+  "ornamental perennials": "#0000ff1a",
+  "common herbs": "#ed00ff1a",
+  "bulbs": "#0def8f38",
+  "ground cover": "#d52f3e1a",
+  "root crops": "#0f9de542",
+  "green manures": "#1ee3fd3d",
+  "climbers": "#e8913b24",
+}

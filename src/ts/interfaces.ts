@@ -21,6 +21,7 @@ export interface ICardMetaData {
   name?: string;
   dimensions: ICardDimensions;
   type: CardType;
+  colour?: string;
 }
 
 export interface ICardDimensions {
