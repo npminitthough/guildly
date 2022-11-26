@@ -9,7 +9,7 @@ interface IProps {
   onSubmit: (e:any) => void
 }
 
-export default function ToolBarForm({children, styles, onSubmit}: IProps) {
+export default function ToolbarForm({children, styles, onSubmit}: IProps) {
   return <StyledForm styles={styles} onSubmit={onSubmit}>{children}</StyledForm>
 }
 

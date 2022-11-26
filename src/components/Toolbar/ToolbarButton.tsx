@@ -6,12 +6,13 @@ interface IProps {
   children?: string;
   icon?: string;
   styles?: Interpolation<React.CSSProperties>;
+  alt?: string;
 }
 
-function ToolbarButton({ children, icon, styles }: IProps) {
+function ToolbarButton({ children, icon, styles, alt }: IProps) {
   return (
     <Button styles={styles} icon={icon}>
-      {icon && <img src={icon} />}
+      {icon && <img src={icon} alt={alt} />}
       {children && <span>{children}</span>}
     </Button>
   );

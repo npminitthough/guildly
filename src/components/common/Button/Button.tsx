@@ -1,19 +1,20 @@
-import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyles from "../../../constants/styles";
 
 interface IProps {
-  children: string | ReactNode;
   variant?: "primary" | "secondary";
   to?: string;
   [x: string]: any;
 }
 
-export default function Button({ children, to, ...rest }: IProps) {
+export default function Button({ to, ...rest }: IProps) {
+  const { children } = rest;
   return to ? (
-    <StyledLink to={to} {...rest}>{children}</StyledLink>
+    <StyledLink to={to} {...rest}>
+      {children}
+    </StyledLink>
   ) : (
     <StyledButton {...rest}>{children}</StyledButton>
   );
