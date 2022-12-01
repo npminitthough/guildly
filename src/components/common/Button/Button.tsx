@@ -6,6 +6,7 @@ import GlobalStyles from "../../../constants/styles";
 interface IProps {
   variant?: "primary" | "secondary";
   to?: string;
+  disabled?: boolean;
   [x: string]: any;
 }
 
@@ -20,7 +21,7 @@ export default function Button({ to, ...rest }: IProps) {
   );
 }
 
-const StyledButton = styled.button<{ variant?: string }>`
+const StyledButton = styled.button<{ variant?: string, disabled?: boolean }>`
   height: 35px;
   font-family: monospace;
   ${({ variant }) => {
@@ -40,6 +41,13 @@ const StyledButton = styled.button<{ variant?: string }>`
           };
         }
       `;
+  }}
+  ${({disabled}) => {
+    if (disabled) {
+      return  `
+    color: lightgrey;
+    `
+    }
   }}
   border: none;
   padding: 1px 10px;
