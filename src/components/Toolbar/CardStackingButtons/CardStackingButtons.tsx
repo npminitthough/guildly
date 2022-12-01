@@ -43,13 +43,13 @@ function CardStackingButtons() {
 
   // update state of stacking buttons based on the current card's z-index
   useEffect(() => {
-    if (zIndex && zIndex < maxZIndex) {
+    if (zIndex !== undefined && zIndex < maxZIndex) {
       setForwardEnabled(true);
     } else {
       setForwardEnabled(false);
     }
 
-    if (zIndex && zIndex > minZIndex) {
+    if (zIndex !== undefined && zIndex > minZIndex) {
       setBackwardEnabled(true);
     } else {
       setBackwardEnabled(false);
@@ -59,7 +59,7 @@ function CardStackingButtons() {
   function onBringForward() {
     const el = document.getElementById(designCtx.focusedCard);
 
-    if (el && zIndex) {
+    if (el && zIndex !== undefined) {
       const newZIndex = zIndex + 1;
       el.style.zIndex = newZIndex.toString();
       setZIndex(newZIndex);
@@ -69,7 +69,7 @@ function CardStackingButtons() {
   function onSendBackward() {
     const el = document.getElementById(designCtx.focusedCard);
 
-    if (el && zIndex) {
+    if (el && zIndex !== undefined) {
       const newZIndex = zIndex - 1;
       el.style.zIndex = newZIndex.toString();
       setZIndex(newZIndex);
