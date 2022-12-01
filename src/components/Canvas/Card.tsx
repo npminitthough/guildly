@@ -10,6 +10,7 @@ import GlobalStyles from "../../constants/styles";
 
 export default function Card(props: ICard) {
   const designCtx = useContext(DesignContext);
+
   const { itemId, position, name, dimensions, type, colour } = props;
 
   function elementShiftCb(id: string, pos: ICardPosition) {
@@ -20,29 +21,65 @@ export default function Card(props: ICard) {
     designCtx.removeFromCanvas(id, type);
   }
 
+  function onFocus(e: any) {
+    designCtx.setFocusedCard(e.target.id);
+  }
+
+  function onBlur(e: any) {
+    // maintain card focus if one of the card stacking buttons is clicked.
+    requestAnimationFrame(() => {
+      if (
+        e.relatedTarget &&
+        e.relatedTarget.classList.contains("card-stacking-btn")
+      ) {
+        e.target.focus();
+      } else if (
+        !e.relatedTarget ||
+        !e.relatedTarget.classList.contains("card")
+      ) {
+        designCtx.setFocusedCard("");
+      }
+    });
+  }
+
   return (
     <CardContainer
       id={itemId}
+      className="card"
       draggable={true}
       onDragStart={onDragStart}
       xInMetres={dimensions.xInMetres}
       yInMetres={dimensions.yInMetres}
-      onKeyDown={(e) => onKeyDown(e, elementShiftCb, elementDeleteCb)}
+      onKeyDown={(e: any) => onKeyDown(e, elementShiftCb, elementDeleteCb)}
       tabIndex={0}
       position={position}
       colour={colour}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      zIndex={designCtx.cards.length - 1}
     >
       {name && <p>{name}</p>}
     </CardContainer>
   );
 }
 
-const CardContainer = styled.div<{
+interface IContainerProps {
   xInMetres: number;
   yInMetres: number | undefined;
   position: ICardPosition | undefined;
   colour?: string;
-}>`
+  zIndex?: number;
+}
+
+const CardContainer = styled.div.attrs(({position}: IContainerProps) => {
+  // set position using attrs method to prevent classes being created everytime a card is shifted.
+  return {
+    style: {
+      left: position?.left,
+      top: position?.top
+    }
+  }
+})<IContainerProps>`
   ${({ xInMetres }) => {
     const widthPx = metresToPx(xInMetres);
     const fontSize = widthPx < 50 ? 12 : 16;
@@ -67,12 +104,17 @@ const CardContainer = styled.div<{
       `;
     }
   }}
+  ${({ zIndex }) => {
+  return `
+     z-index: ${zIndex};
+  `;
+  }}
   cursor: pointer;
-  ${({colour}) => {
+  ${({ colour }) => {
     return `
-      background-color: ${colour || 'transparent'};
+      background-color: ${colour || "transparent"};
       border: ${colour || GlobalStyles.colors.tertiary500 + "40"} 1.5px solid;
-    `
+    `;
   }}
   color: ${GlobalStyles.colors.tertiary600};
   position: absolute;
@@ -85,13 +127,5 @@ const CardContainer = styled.div<{
     color: ${GlobalStyles.colors.highlight500};
     outline: 1px solid ${GlobalStyles.colors.highlight500};
   }
-  ${({ position }) => {
-    return (
-      position &&
-      `
-        left: ${position.left};
-        top: ${position.top};
-      `
-    );
-  }}
+ 
 `;

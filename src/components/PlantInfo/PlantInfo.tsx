@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import GlobalStyles from "../../constants/styles";
 import { IPlant } from "../../ts/interfaces";
@@ -9,9 +10,10 @@ import Tag from "../common/Tag/Tag";
 interface IProps {
   id: string;
   plant: IPlant;
+  style?: React.CSSProperties;
 }
 
-export default function PlantInfo({ id, plant }: IProps) {
+export default function PlantInfo({ id, plant, style }: IProps) {
   const {
     widthInMetres,
     heightInMetres,
@@ -27,7 +29,7 @@ export default function PlantInfo({ id, plant }: IProps) {
     : null;
 
   return (
-    <PlantInfoContainer id={id}>
+    <PlantInfoContainer id={id} style={style}>
       <div style={{ float: "left" }}>
         <PlantInfoItem>
           <Label>Max spread: </Label>
@@ -71,7 +73,6 @@ const PlantInfoContainer = styled.div`
   padding: 15px 20px;
   background-color: white;
   text-align: left;
-  z-index: 2;
   box-shadow: 0 0 1px grey;
 `;
 

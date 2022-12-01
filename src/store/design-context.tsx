@@ -21,6 +21,8 @@ const defaultDesignContext = {
       dimensions: { xInMetres: 1 },
     },
   ],
+  focusedCard: "",
+  setFocusedCard: (id: string) => {},
   addToCanvas: (cardMetaData: ICardMetaData) => {},
   updateCardPosition: (itemId: string, pos: ICardPosition) => {},
   removeFromCanvas: (itemId: string, cardType: CardType) => {},
@@ -50,6 +52,7 @@ export default function DesignContextProvider({ children }: IProps) {
     scrollLeft: 0,
   });
   const [cards, updateCards] = useState(initialCardsState);
+  const [focusedCard, setFocusedCard] = useState("");
 
   const addToCanvas = (cardMetaData: ICardMetaData) => {
     const itemId = nanoid(4);
@@ -98,7 +101,9 @@ export default function DesignContextProvider({ children }: IProps) {
         updateCardPosition,
         cards,
         addToCanvas,
-        clearAll
+        clearAll,
+        focusedCard,
+        setFocusedCard
       }}
     >
       {children}
