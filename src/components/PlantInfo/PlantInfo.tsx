@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { Interpolation } from "styled-components";
+import styled from "styled-components";
 import GlobalStyles from "../../constants/styles";
 import { IPlant } from "../../ts/interfaces";
 
