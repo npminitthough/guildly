@@ -48,7 +48,7 @@ export default function PlantOption({ plant, category }: IProps) {
         {name}
       </PlantOptionContainer>
 
-      <PlantInfo id="plant-info" plant={plant} />
+      <PlantInfo id="plant-info" plant={plant} style={{zIndex: 1000}} />
     </div>
   );
 }

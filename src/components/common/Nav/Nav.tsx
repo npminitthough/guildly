@@ -43,7 +43,7 @@ const Logo = styled(Link)`
 
 const Contents = styled.div`
   flex: 4;
-  z-index: 1;
+  z-index: 1000;
 `;
 
 export default Nav;
