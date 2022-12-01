@@ -6,6 +6,7 @@ import CircleForm from "./ToolbarForm/CircleForm/CircleForm";
 import RectForm from "./ToolbarForm/RectForm/RectForm";
 import ToolbarButton from "./ToolbarButton";
 import Button from "../common/Button/Button";
+import CardStackingButtons from "./CardStackingButtons/CardStackingButtons";
 
 import CircleIcon from "./img/ellipse-outline.svg";
 import SquareIcon from "./img/square-outline.svg";
@@ -31,6 +32,8 @@ function Toolbar() {
         }
         dropdownComponent={<RectForm />}
       />
+
+      {<CardStackingButtons />}
 
       <Button
         style={{ marginLeft: "auto" }}
