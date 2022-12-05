@@ -12,7 +12,7 @@ import DesignContextProvider from "../../store/design-context";
 
 export default function DesignPage() {
   const navHeight = "40px";
-  
+
   return (
     <PlantCatalogueContextProvider>
       <DesignContextProvider>
@@ -25,10 +25,10 @@ export default function DesignPage() {
             <Toolbar />
           </Nav>
           <Container className="l-design-page" navHeight={navHeight}>
-            <Menu styles={{ flex: 1 }}>
+            <Menu style={{ flex: 1 }}>
               <PlantMenu />
             </Menu>
-            <Canvas styles={{ flex: 4 }} />
+            <Canvas style={{ flex: 4 }} />
           </Container>
         </div>
       </DesignContextProvider>

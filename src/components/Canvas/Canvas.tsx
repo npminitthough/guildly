@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled, {Interpolation} from "styled-components";
+import styled from "styled-components";
 
 import { DesignContext } from "../../store/design-context";
 import { ICard } from "../../ts/interfaces";
@@ -7,18 +7,19 @@ import { ICard } from "../../ts/interfaces";
 import Card from "./Card";
 
 interface IProps {
-  styles: Interpolation<React.CSSProperties>
+  style: React.CSSProperties;
 }
 
-export default function Canvas({styles}: IProps) {
+export default function Canvas({ style }: IProps) {
   const designCtx = useContext(DesignContext);
   const cards = designCtx.cards;
-  
+
   function onDragOver(e: any) {
     e.preventDefault();
   }
 
   function onScroll(e: any) {
+    // used in context when adding an element to the canvas.
     designCtx.updateCanvasScrollPos({
       scrollTop: e.target.scrollTop,
       scrollLeft: e.target.scrollLeft,
@@ -27,24 +28,25 @@ export default function Canvas({styles}: IProps) {
 
   function onDrop(e: any) {
     e.preventDefault();
+    const canvasOuterContainer = e.target
+      .closest(".l-canvas")
+      .getBoundingClientRect();
+
     const scrollTop = e.target.parentElement.scrollTop;
     const scrollLeft = e.target.parentElement.scrollLeft;
 
     const cardId = e.dataTransfer.getData("cardId");
-    const cardOffsetHeight = e.dataTransfer.getData("offsetheight");
-    const cardOffsetWidth = e.dataTransfer.getData("offsetwidth");
+    const cardOffsetX = e.dataTransfer.getData("xoffset");
+    const cardOffsetY = e.dataTransfer.getData("yoffset");
 
     const card = document.getElementById(cardId);
-    const sideMenu = document.getElementById("side-menu");
-    const edgeOfmenu = sideMenu ? sideMenu.getBoundingClientRect().right : 0;
-    
-    const nav = document.getElementById("navbar");
-    const bottomOfNav = nav ? nav.getBoundingClientRect().bottom : 0;
 
     if (card && card.style) {
       card.style.left =
-        e.clientX - edgeOfmenu - cardOffsetWidth / 2 + scrollLeft + "px";
-      card.style.top = e.clientY - cardOffsetHeight / 2 + scrollTop - bottomOfNav + "px";
+        e.clientX - cardOffsetX + scrollLeft - canvasOuterContainer.left + "px";
+
+      card.style.top =
+        e.clientY - cardOffsetY + scrollTop - canvasOuterContainer.top + "px";
 
       designCtx.updateCardPosition(cardId, {
         left: card.style.left,
@@ -55,7 +57,7 @@ export default function Canvas({styles}: IProps) {
 
   return (
     <CanvasOuterContainer
-      styles={styles}
+      style={style}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onScroll={onScroll}
@@ -70,10 +72,7 @@ export default function Canvas({styles}: IProps) {
   );
 }
 
-const CanvasOuterContainer = styled.div<{styles: Interpolation<React.CSSProperties>}>`
-  ${({ styles }) => {
-    return styles;
-  }}
+const CanvasOuterContainer = styled.div`
   height: 100%;
   width: 100%;
   flex: 4;
