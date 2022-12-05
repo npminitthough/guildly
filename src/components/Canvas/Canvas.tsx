@@ -28,12 +28,10 @@ export default function Canvas({ style }: IProps) {
 
   function onDrop(e: any) {
     e.preventDefault();
-    const canvasOuterContainer = e.target
-      .closest(".l-canvas")
-      .getBoundingClientRect();
+    const canvasOuterContainer = e.target.closest(".l-canvas");
 
-    const scrollTop = e.target.parentElement.scrollTop;
-    const scrollLeft = e.target.parentElement.scrollLeft;
+    const scrollTop = canvasOuterContainer.scrollTop;
+    const scrollLeft = canvasOuterContainer.scrollLeft;
 
     const cardId = e.dataTransfer.getData("cardId");
     const cardOffsetX = e.dataTransfer.getData("xoffset");
@@ -43,10 +41,18 @@ export default function Canvas({ style }: IProps) {
 
     if (card && card.style) {
       card.style.left =
-        e.clientX - cardOffsetX + scrollLeft - canvasOuterContainer.left + "px";
+        e.clientX -
+        cardOffsetX +
+        scrollLeft -
+        canvasOuterContainer.getBoundingClientRect().left +
+        "px";
 
       card.style.top =
-        e.clientY - cardOffsetY + scrollTop - canvasOuterContainer.top + "px";
+        e.clientY -
+        cardOffsetY +
+        scrollTop -
+        canvasOuterContainer.getBoundingClientRect().top +
+        "px";
 
       designCtx.updateCardPosition(cardId, {
         left: card.style.left,
