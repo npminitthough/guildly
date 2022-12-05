@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled, {Interpolation} from "styled-components";
+import styled from "styled-components";
 
 import { DesignContext } from "../../store/design-context";
 import { ICard } from "../../ts/interfaces";
@@ -7,18 +7,19 @@ import { ICard } from "../../ts/interfaces";
 import Card from "./Card";
 
 interface IProps {
-  styles: Interpolation<React.CSSProperties>
+  style: React.CSSProperties;
 }
 
-export default function Canvas({styles}: IProps) {
+export default function Canvas({ style }: IProps) {
   const designCtx = useContext(DesignContext);
   const cards = designCtx.cards;
-  
+
   function onDragOver(e: any) {
     e.preventDefault();
   }
 
   function onScroll(e: any) {
+    // used in context when adding an element to the canvas.
     designCtx.updateCanvasScrollPos({
       scrollTop: e.target.scrollTop,
       scrollLeft: e.target.scrollLeft,
@@ -55,7 +56,7 @@ export default function Canvas({styles}: IProps) {
 
   return (
     <CanvasOuterContainer
-      styles={styles}
+      style={style}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onScroll={onScroll}
@@ -70,10 +71,7 @@ export default function Canvas({styles}: IProps) {
   );
 }
 
-const CanvasOuterContainer = styled.div<{styles: Interpolation<React.CSSProperties>}>`
-  ${({ styles }) => {
-    return styles;
-  }}
+const CanvasOuterContainer = styled.div`
   height: 100%;
   width: 100%;
   flex: 4;
