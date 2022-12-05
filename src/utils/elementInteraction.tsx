@@ -1,11 +1,10 @@
-
 import { ArrowKeys } from "../ts/enums";
 import arrowKeyShift from "../constants/arrowKeyShift";
 
 import { ICardPosition } from "../ts/interfaces";
 
 export function onKeyDown(
-  e: any, 
+  e: any,
   elementShiftCb: (id: string, pos: ICardPosition) => void,
   elementDeleteCb: (id: string) => void
 ) {
@@ -21,7 +20,7 @@ export function onKeyDown(
       elementShiftCb(cardId, {
         left: e.target.offsetLeft + "px",
         top,
-      })
+      });
     } else {
       const left = e.target.offsetLeft + arrowKeyShift[e.key] + "px";
       e.target.style.left = left;
@@ -29,7 +28,7 @@ export function onKeyDown(
       elementShiftCb(cardId, {
         left,
         top: e.target.offsetTop + "px",
-      })
+      });
     }
   }
 
@@ -39,9 +38,17 @@ export function onKeyDown(
 }
 
 export function onDragStart(e: any) {
-  const target = e.target;
+  const elementDOMRect = e.target.getBoundingClientRect();
 
-  e.dataTransfer.setData("cardId", target.id);
-  e.dataTransfer.setData("offsetheight", target.offsetHeight);
-  e.dataTransfer.setData("offsetwidth", target.offsetWidth);
+  // save the distance between the cursor and the top of the element being dragged.
+  e.dataTransfer.setData(
+    "yoffset",
+    parseInt(e.clientY, 10) - elementDOMRect.top
+  );
+  e.dataTransfer.setData(
+    "xoffset",
+    parseInt(e.clientX, 10) - elementDOMRect.left
+  );
+
+  e.dataTransfer.setData("cardId", e.target.id);
 }

@@ -28,24 +28,25 @@ export default function Canvas({ style }: IProps) {
 
   function onDrop(e: any) {
     e.preventDefault();
+    const canvasOuterContainer = e.target
+      .closest(".l-canvas")
+      .getBoundingClientRect();
+
     const scrollTop = e.target.parentElement.scrollTop;
     const scrollLeft = e.target.parentElement.scrollLeft;
 
     const cardId = e.dataTransfer.getData("cardId");
-    const cardOffsetHeight = e.dataTransfer.getData("offsetheight");
-    const cardOffsetWidth = e.dataTransfer.getData("offsetwidth");
+    const cardOffsetX = e.dataTransfer.getData("xoffset");
+    const cardOffsetY = e.dataTransfer.getData("yoffset");
 
     const card = document.getElementById(cardId);
-    const sideMenu = document.getElementById("side-menu");
-    const edgeOfmenu = sideMenu ? sideMenu.getBoundingClientRect().right : 0;
-    
-    const nav = document.getElementById("navbar");
-    const bottomOfNav = nav ? nav.getBoundingClientRect().bottom : 0;
 
     if (card && card.style) {
       card.style.left =
-        e.clientX - edgeOfmenu - cardOffsetWidth / 2 + scrollLeft + "px";
-      card.style.top = e.clientY - cardOffsetHeight / 2 + scrollTop - bottomOfNav + "px";
+        e.clientX - cardOffsetX + scrollLeft - canvasOuterContainer.left + "px";
+
+      card.style.top =
+        e.clientY - cardOffsetY + scrollTop - canvasOuterContainer.top + "px";
 
       designCtx.updateCardPosition(cardId, {
         left: card.style.left,
