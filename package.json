@@ -57,6 +57,8 @@
     ]
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^14.0.0",
+    "@cypress/webpack-preprocessor": "^5.15.6",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
@@ -69,7 +71,9 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/styled-components": "^5.1.26",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "cypress": "^11.2.0",
     "prop-types": "^15.8.1",
+    "ts-loader": "^9.4.2",
     "webpack": "^5.74.0"
   }
 }
