@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import styled, {Interpolation} from "styled-components";
+import styled, { Interpolation } from "styled-components";
 
 interface IProps {
   buttonComponent: ReactNode;
@@ -7,7 +7,11 @@ interface IProps {
   styles?: Interpolation<React.CSSProperties>;
 }
 
-function ToolbarDropdown({ buttonComponent, dropdownComponent, styles }: IProps) {
+function ToolbarDropdown({
+  buttonComponent,
+  dropdownComponent,
+  styles,
+}: IProps) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   function onFocus() {
@@ -21,15 +25,22 @@ function ToolbarDropdown({ buttonComponent, dropdownComponent, styles }: IProps)
   }
 
   return (
-    <DropDownContainer onFocus={onFocus} onBlur={onBlur} tabIndex={0} styles={styles}>
+    <DropDownContainer
+      onFocus={onFocus}
+      onBlur={onBlur}
+      tabIndex={0}
+      styles={styles}
+    >
       {buttonComponent}
       <div>{showDropdown && dropdownComponent}</div>
     </DropDownContainer>
   );
 }
 
-const DropDownContainer = styled.div<{styles: Interpolation<React.CSSProperties>}>`
-  ${({styles}) => {
+const DropDownContainer = styled.div<{
+  styles: Interpolation<React.CSSProperties>;
+}>`
+  ${({ styles }) => {
     return styles;
   }}
   height: 40px;

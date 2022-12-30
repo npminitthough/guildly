@@ -17,7 +17,7 @@ function Toolbar() {
   const designContext = useContext(DesignContext);
 
   return (
-    <ToolbarContainer>
+    <ToolbarContainer className="toolbar">
       <ToolbarDropdown
         styles={{ width: "85px" }}
         buttonComponent={
