@@ -1,17 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import GlobalStyles from '../../constants/styles'
+import GlobalStyles from "../../constants/styles";
 
-import {ICategory} from '../../ts/interfaces'
+import { ICategory } from "../../ts/interfaces";
 import { CategoryName } from "../../ts/types";
-import PlantOption from './PlantOption'
+import PlantOption from "./PlantOption";
 
 import ForwardChevron from "./img/chevron-forward-outline.svg";
 import DownChevron from "./img/chevron-down-outline.svg";
 
 interface IProps {
-  category: ICategory
+  category: ICategory;
 }
 
 export default function Category({ category }: IProps) {
@@ -28,9 +28,15 @@ export default function Category({ category }: IProps) {
         <Icon src={showPlantOptions ? DownChevron : ForwardChevron} />
       </CategoryHeader>
       {showPlantOptions && (
-        <PlantOptions>
+        <PlantOptions className="plant-options">
           {category.plants.map((plant, i) => {
-            return <PlantOption key={i} plant={plant} category={category.name as CategoryName} />;
+            return (
+              <PlantOption
+                key={i}
+                plant={plant}
+                category={category.name as CategoryName}
+              />
+            );
           })}
         </PlantOptions>
       )}
@@ -55,7 +61,8 @@ const PlantOptions = styled.div`
   max-height: 160px;
   overflow-y: auto;
   background-color: ${GlobalStyles.colors.primary500};
-  scrollbar-color:  ${GlobalStyles.colors.secondary500} ${GlobalStyles.colors.primary500};
+  scrollbar-color: ${GlobalStyles.colors.secondary500}
+    ${GlobalStyles.colors.primary500};
   scrollbar-width: thin;
   scroll-behavior: smooth;
   ::-webkit-scrollbar {
@@ -65,8 +72,6 @@ const PlantOptions = styled.div`
     background-color: ${GlobalStyles.colors.secondary500};
   }
 `;
-
-
 
 const Icon = styled.img`
   height: 20px;
