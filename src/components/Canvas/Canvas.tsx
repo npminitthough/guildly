@@ -7,7 +7,7 @@ import { ICard } from "../../ts/interfaces";
 import Card from "./Card";
 
 interface IProps {
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 export default function Canvas({ style }: IProps) {

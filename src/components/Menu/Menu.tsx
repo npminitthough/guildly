@@ -23,6 +23,7 @@ const MenuWrapper = styled.aside`
   color: white;
   font-family: monospace;
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-color: ${GlobalStyles.colors.secondary500}
     ${GlobalStyles.colors.primary500};
   scrollbar-width: thin;

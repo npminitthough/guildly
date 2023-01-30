@@ -5,10 +5,13 @@ import GlobalStyles from "../../constants/styles";
 
 import { ICategory } from "../../ts/interfaces";
 import { CategoryName } from "../../ts/types";
-import PlantOption from "./PlantOption";
+import PlantInfo from "../PlantInfo/PlantInfo";
 
 import ForwardChevron from "./img/chevron-forward-outline.svg";
 import DownChevron from "./img/chevron-down-outline.svg";
+import PlantOptionContainer from "./PlantOptionContainer";
+
+import { IOptionComponentProps } from "./ts/interface";
 
 interface IProps {
   category: ICategory;
@@ -24,17 +27,29 @@ export default function Category({ category }: IProps) {
   return (
     <div>
       <CategoryHeader onClick={onHeaderClick}>
-        <p>{category.name}</p>
+        <p>
+          {category.name} <Count>({category.plants.length})</Count>
+        </p>
         <Icon src={showPlantOptions ? DownChevron : ForwardChevron} />
       </CategoryHeader>
       {showPlantOptions && (
         <PlantOptions className="plant-options">
           {category.plants.map((plant, i) => {
             return (
-              <PlantOption
+              <PlantOptionContainer
                 key={i}
                 plant={plant}
                 category={category.name as CategoryName}
+                optionComponent={(props: IOptionComponentProps) => {
+                  return (
+                    <PlantInfo
+                      {...props}
+                      plant={plant}
+                      highlightOnHover
+                      style={{ cursor: "pointer" }}
+                    />
+                  );
+                }}
               />
             );
           })}
@@ -57,9 +72,15 @@ const CategoryHeader = styled.div`
   margin: 0 20px;
 `;
 
+const Count = styled.span`
+  color: white;
+  font-size: 14px;
+`;
+
 const PlantOptions = styled.div`
-  max-height: 160px;
+  max-height: 300px;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: ${GlobalStyles.colors.primary500};
   scrollbar-color: ${GlobalStyles.colors.secondary500}
     ${GlobalStyles.colors.primary500};

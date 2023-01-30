@@ -25,10 +25,10 @@ export default function DesignPage() {
             <Toolbar />
           </Nav>
           <Container className="l-design-page" navHeight={navHeight}>
-            <Menu style={{ flex: 1 }}>
+            <Menu style={{ width: '295px' }}>
               <PlantMenu />
             </Menu>
-            <Canvas style={{ flex: 4 }} />
+            <Canvas />
           </Container>
         </div>
       </DesignContextProvider>

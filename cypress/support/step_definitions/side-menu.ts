@@ -10,10 +10,13 @@ Then("I see the plant options", () => {
 
 Then("I do not see plant options", () => {
     cy.get('.plant-options').should('not.exist');
-})
-
+});
 
 Then("I see {string} as a plant option", (plantName: string) => {
     cy.get('.plant-options').contains(plantName)
+});
+
+Then("I see {string} in the plant options", (text: string) => {
+    cy.get('.plant-options').contains(text, {matchCase: false})
 });
 
