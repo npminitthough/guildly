@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 
 import GlobalStyles from "../../constants/styles";
+
+import { FeatureFlagCxt } from "../../store/feature-flag-context";
 
 import { ICategory } from "../../ts/interfaces";
 import { CategoryName } from "../../ts/types";
@@ -10,6 +12,7 @@ import PlantInfo from "../PlantInfo/PlantInfo";
 import ForwardChevron from "./img/chevron-forward-outline.svg";
 import DownChevron from "./img/chevron-down-outline.svg";
 import PlantOptionContainer from "./PlantOptionContainer";
+import PlantOption from "./PlantOption";
 
 import { IOptionComponentProps } from "./ts/interface";
 
@@ -19,6 +22,7 @@ interface IProps {
 
 export default function Category({ category }: IProps) {
   const [showPlantOptions, setShowPlantOptions] = useState(false);
+  const FeatureFlagContext = useContext(FeatureFlagCxt);
 
   function onHeaderClick() {
     setShowPlantOptions(!showPlantOptions);
@@ -41,14 +45,18 @@ export default function Category({ category }: IProps) {
                 plant={plant}
                 category={category.name as CategoryName}
                 optionComponent={(props: IOptionComponentProps) => {
-                  return (
-                    <PlantInfo
-                      {...props}
-                      plant={plant}
-                      highlightOnHover
-                      style={{ cursor: "pointer" }}
-                    />
-                  );
+                  if (FeatureFlagContext.showFilters) {
+                    return (
+                      <PlantInfo
+                        {...props}
+                        plant={plant}
+                        highlightOnHover
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
+                  } else {
+                    return <PlantOption {...props} plant={plant} />;
+                  }
                 }}
               />
             );
