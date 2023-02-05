@@ -12,6 +12,15 @@ export interface IPlant {
   imageUrl?: string;
 }
 
+export interface IFilters {
+  nitrogenFixer: boolean;
+  insectAttractor: boolean;
+  nutrientAccumulator: boolean;
+  vva1: boolean;
+  quinceC: boolean;
+  m27: boolean;
+}
+
 export interface ICard extends ICardMetaData {
   itemId: string;
   position: ICardPosition;
