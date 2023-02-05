@@ -9,6 +9,7 @@ import Canvas from "../../components/Canvas/Canvas";
 
 import PlantCatalogueContextProvider from "../../store/plant-catalogue-context";
 import DesignContextProvider from "../../store/design-context";
+import FeatureFlagProvider from "../../store/feature-flag-context";
 
 export default function DesignPage() {
   const navHeight = "40px";
@@ -16,21 +17,23 @@ export default function DesignPage() {
   return (
     <PlantCatalogueContextProvider>
       <DesignContextProvider>
-        <div
-          style={{
-            height: "100vh",
-          }}
-        >
-          <Nav height={navHeight}>
-            <Toolbar />
-          </Nav>
-          <Container className="l-design-page" navHeight={navHeight}>
-            <Menu style={{ width: '295px' }}>
-              <PlantMenu />
-            </Menu>
-            <Canvas />
-          </Container>
-        </div>
+        <FeatureFlagProvider>
+          <div
+            style={{
+              height: "100vh",
+            }}
+          >
+            <Nav height={navHeight}>
+              <Toolbar />
+            </Nav>
+            <Container className="l-design-page" navHeight={navHeight}>
+              <Menu style={{ width: "295px" }}>
+                <PlantMenu />
+              </Menu>
+              <Canvas />
+            </Container>
+          </div>
+        </FeatureFlagProvider>
       </DesignContextProvider>
     </PlantCatalogueContextProvider>
   );
