@@ -5,20 +5,20 @@ Then("I am on the {string} page", (path: string) => {
 });
 
 When("I visit {string}", (url: string) => {
-    cy.visit(url);
-  });
-  
-  Then("I see {string}", (text: string) => {
-    cy.contains(text, { matchCase: false })
-  });
-  
-  Then(/^I see an? "(.*)" button$/, (buttonText: string) => {
-    cy.get('button').contains(buttonText, { matchCase: false });
-  });
+cy.visit(url);
+});
 
-  Then("I click the {string} button", (buttonText: string) => {
-    cy.get('button').contains(buttonText, { matchCase: false }).click();
-  });
+Then("I see {string}", (text: string) => {
+  cy.contains(text, { matchCase: false })
+});
+
+Then(/^I see an? "(.*)" button$/, (buttonText: string) => {
+  cy.get('button').contains(buttonText, { matchCase: false });
+});
+
+Then("I click the {string} button", (buttonText: string) => {
+  cy.get('button').contains(buttonText, { matchCase: false }).click();
+});
 
 
   Then("I see a {string} link", (linkText: string) => {

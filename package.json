@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress:open": "./node_modules/.bin/cypress open -e \"TAGS=not @documentation-only\"",
     "emulator": "conc \"firebase emulators:start --only firestore\" \" node src/test-data/import.js\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
