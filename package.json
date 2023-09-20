@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "emulator": "conc \"firebase emulators:start --only firestore\" \" node src/test-data/import.js\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
@@ -74,6 +75,7 @@
     "@types/styled-components": "^5.1.26",
     "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^11.2.0",
+    "firebase-admin": "^11.10.1",
     "prop-types": "^15.8.1",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.4.2",
