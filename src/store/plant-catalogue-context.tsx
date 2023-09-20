@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 
 import PLANT_CATALOGUE from "./plant-catalogue";
-import { ICategory, IFilters } from "../ts/interfaces";
+import { ICategoryWithPlants, IFilters } from "../ts/interfaces";
 
-const initialPlantCatalogueCtx: ICategory[] = PLANT_CATALOGUE;
+const initialPlantCatalogueCtx: ICategoryWithPlants[] = PLANT_CATALOGUE;
 
 const initialFilters = {
   nitrogenFixer: false,

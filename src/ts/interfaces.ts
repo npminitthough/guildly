@@ -10,6 +10,7 @@ export interface IPlant {
   nutrientAccumulator?: boolean;
   biofumigant?: boolean;
   imageUrl?: string;
+  categoryId?: string;
 }
 
 export interface IFilters {
@@ -48,9 +49,15 @@ export interface ICardPosition {
   top: string;
 }
 
-export interface ICategory {
+export interface ICategoryWithPlants {
   name: string;
   plants: IPlant[];
+  id?: string;
+}
+
+export interface ICategory {
+  name: string;
+  id?: string;
 }
 
 export interface IMeasurementDisplay {
