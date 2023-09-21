@@ -5,7 +5,7 @@ import GlobalStyles from "../../constants/styles";
 
 import { FeatureFlagCxt } from "../../store/feature-flag-context";
 
-import { ICategory } from "../../ts/interfaces";
+import { ICategoryWithPlants } from "../../ts/interfaces";
 import { CategoryName } from "../../ts/types";
 import PlantInfo from "../PlantInfo/PlantInfo";
 
@@ -17,7 +17,7 @@ import PlantOption from "./PlantOption";
 import { IOptionComponentProps } from "./ts/interface";
 
 interface IProps {
-  category: ICategory;
+  category: ICategoryWithPlants;
 }
 
 export default function Category({ category }: IProps) {

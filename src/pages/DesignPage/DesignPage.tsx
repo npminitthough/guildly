@@ -7,35 +7,38 @@ import Menu from "../../components/Menu/Menu";
 import PlantMenu from "../../components/PlantMenu/PlantMenu";
 import Canvas from "../../components/Canvas/Canvas";
 
-import PlantCatalogueContextProvider from "../../store/plant-catalogue-context";
 import DesignContextProvider from "../../store/design-context";
 import FeatureFlagProvider from "../../store/feature-flag-context";
+
+import useGetCategories from "../../hooks/useGetCategories/useGetCategories";
+import useGetPlants from "../../hooks/useGetPlants/useGetPlants";
 
 export default function DesignPage() {
   const navHeight = "40px";
 
+  const categories = useGetCategories();
+  const plants = useGetPlants();
+
   return (
-    <PlantCatalogueContextProvider>
-      <DesignContextProvider>
-        <FeatureFlagProvider>
-          <div
-            style={{
-              height: "100vh",
-            }}
-          >
-            <Nav height={navHeight}>
-              <Toolbar />
-            </Nav>
-            <Container className="l-design-page" navHeight={navHeight}>
-              <Menu style={{ width: "295px" }}>
-                <PlantMenu />
-              </Menu>
-              <Canvas />
-            </Container>
-          </div>
-        </FeatureFlagProvider>
-      </DesignContextProvider>
-    </PlantCatalogueContextProvider>
+    <DesignContextProvider>
+      <FeatureFlagProvider>
+        <div
+          style={{
+            height: "100vh",
+          }}
+        >
+          <Nav height={navHeight}>
+            <Toolbar />
+          </Nav>
+          <Container className="l-design-page" navHeight={navHeight}>
+            <Menu style={{ width: "295px" }}>
+              <PlantMenu categories={categories} plants={plants} />
+            </Menu>
+            <Canvas />
+          </Container>
+        </div>
+      </FeatureFlagProvider>
+    </DesignContextProvider>
   );
 }
 

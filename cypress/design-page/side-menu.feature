@@ -16,10 +16,10 @@ Feature: Design page menu
         Then I see "climbers" in the side menu
 
     Scenario: I can show and hide plants in a category
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I see the plant options
         And I see "bergamot" as a plant option
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I do not see plant options
 
     @documentation-only
@@ -31,7 +31,7 @@ Feature: Design page menu
         And I see "Max height" in the plant options
 
     Scenario: I can add a plant to the canvas via the menu
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I see the plant options
         And I see "bergamot" as a plant option
         When I click "bergamot"
