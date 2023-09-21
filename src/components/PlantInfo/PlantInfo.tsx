@@ -3,17 +3,27 @@ import styled from "styled-components";
 import GlobalStyles from "../../constants/styles";
 import { IPlant } from "../../ts/interfaces";
 
+import NitrogenFixerIcon from "../common/Icon/NitrogenFixer";
+import NutrientAccumulatorIcon from "../common/Icon/NutrientAccumulator";
+import InsectAttractorIcon from "../common/Icon/InsectAttractor";
+
 import { getDisplayValue } from "../../utils/conversions";
 
-import Tag from "../common/Tag/Tag";
-
 interface IProps {
-  id: string;
+  id?: string;
   plant: IPlant;
   style?: React.CSSProperties;
+  highlightOnHover?: boolean;
+  onClick?: () => void;
 }
 
-export default function PlantInfo({ id, plant, style }: IProps) {
+export default function PlantInfo({
+  id,
+  plant,
+  style,
+  highlightOnHover,
+  onClick,
+}: IProps) {
   const {
     widthInMetres,
     heightInMetres,
@@ -22,6 +32,7 @@ export default function PlantInfo({ id, plant, style }: IProps) {
     insectAttractor,
     nitrogenFixer,
     nutrientAccumulator,
+    name,
   } = plant;
   const widthDisplayValue = getDisplayValue(widthInMetres);
   const heightDisplayValue = heightInMetres
@@ -29,55 +40,85 @@ export default function PlantInfo({ id, plant, style }: IProps) {
     : null;
 
   return (
-    <PlantInfoContainer id={id} style={style}>
-      <div style={{ float: "left" }}>
-        <PlantInfoItem>
-          <Label>Max spread: </Label>
-          <Text>
-            {widthDisplayValue.value}
-            {widthDisplayValue.units}
-          </Text>
-        </PlantInfoItem>
-        {heightDisplayValue && (
+    <PlantInfoContainer
+      id={id}
+      style={style}
+      onClick={onClick}
+      highlightOnHover={highlightOnHover}
+    >
+      <PlantDetailsContainer style={{ display: "flex" }}>
+        <div>
+          <PlantInfoItem
+            style={{ display: "inline-flex", alignItems: "center" }}
+          >
+            <PlantName>{name}</PlantName>
+            <TagContainer>
+              {insectAttractor && <InsectAttractorIcon />}
+              {nitrogenFixer && <NitrogenFixerIcon />}
+              {nutrientAccumulator && <NutrientAccumulatorIcon />}
+            </TagContainer>
+          </PlantInfoItem>
           <PlantInfoItem>
-            <Label>Max height: </Label>
+            <Label>Max spread: </Label>
             <Text>
-              {heightDisplayValue.value}
-              {heightDisplayValue.units}
+              {widthDisplayValue.value}
+              {widthDisplayValue.units}
             </Text>
           </PlantInfoItem>
-        )}
-        {rootStock && (
-          <PlantInfoItem>
-            <Label>Root stock: </Label>
-            <Text>{rootStock}</Text>
-          </PlantInfoItem>
-        )}
-      </div>
+          {heightDisplayValue && (
+            <PlantInfoItem>
+              <Label>Max height: </Label>
+              <Text>
+                {heightDisplayValue.value}
+                {heightDisplayValue.units}
+              </Text>
+            </PlantInfoItem>
+          )}
+          {rootStock && (
+            <PlantInfoItem>
+              <Label>Root stock: </Label>
+              <Text>{rootStock}</Text>
+            </PlantInfoItem>
+          )}
+        </div>
 
-      {imageUrl && <Image src={imageUrl} />}
-
-      <TagContainer>
-        {insectAttractor && <Tag color="purple">insect attractor</Tag>}
-        {nitrogenFixer && <Tag color="cornflowerblue">nitrogen fixer</Tag>}
-        {nutrientAccumulator && <Tag color="organge">insect attractor</Tag>}
-      </TagContainer>
+        {imageUrl && <Image src={imageUrl} />}
+      </PlantDetailsContainer>
     </PlantInfoContainer>
   );
 }
 
-const PlantInfoContainer = styled.div`
-  position: absolute;
-  width: fit-content;
+const PlantInfoContainer = styled.div<{ highlightOnHover?: boolean }>`
+  max-width: 250px;
   min-height: 40px;
   padding: 15px 20px;
   background-color: white;
   text-align: left;
   box-shadow: 0 0 1px grey;
+  ${({ highlightOnHover }) => {
+    return (
+      highlightOnHover &&
+      `:hover {
+        box-shadow: inset 1px 1px 15px #ecaf8050;
+      }`
+    );
+  }}
 `;
 
-const PlantInfoItem = styled.p`
-  margin-top: 0;
+const PlantDetailsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const PlantName = styled.div`
+  font-family: monospace;
+  text-decoration: underline;
+  color: ${GlobalStyles.colors.tertiary600};
+  font-weight: bold;
+`;
+
+const PlantInfoItem = styled.div`
+  margin-bottom: 12px;
   text-transform: capitalize;
 `;
 
@@ -94,7 +135,9 @@ const Image = styled.img`
   width: 100px;
   object-fit: cover;
   margin-left: 15px;
-  float: right;
 `;
 
-const TagContainer = styled.div``;
+const TagContainer = styled.div`
+  display: inline-block;
+  margin-left: 10px;
+`;

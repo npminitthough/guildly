@@ -7,15 +7,21 @@ import Menu from "../../components/Menu/Menu";
 import PlantMenu from "../../components/PlantMenu/PlantMenu";
 import Canvas from "../../components/Canvas/Canvas";
 
-import PlantCatalogueContextProvider from "../../store/plant-catalogue-context";
 import DesignContextProvider from "../../store/design-context";
+import FeatureFlagProvider from "../../store/feature-flag-context";
+
+import useGetCategories from "../../hooks/useGetCategories/useGetCategories";
+import useGetPlants from "../../hooks/useGetPlants/useGetPlants";
 
 export default function DesignPage() {
   const navHeight = "40px";
 
+  const categories = useGetCategories();
+  const plants = useGetPlants();
+
   return (
-    <PlantCatalogueContextProvider>
-      <DesignContextProvider>
+    <DesignContextProvider>
+      <FeatureFlagProvider>
         <div
           style={{
             height: "100vh",
@@ -25,14 +31,14 @@ export default function DesignPage() {
             <Toolbar />
           </Nav>
           <Container className="l-design-page" navHeight={navHeight}>
-            <Menu style={{ flex: 1 }}>
-              <PlantMenu />
+            <Menu style={{ width: "295px" }}>
+              <PlantMenu categories={categories} plants={plants} />
             </Menu>
-            <Canvas style={{ flex: 4 }} />
+            <Canvas />
           </Container>
         </div>
-      </DesignContextProvider>
-    </PlantCatalogueContextProvider>
+      </FeatureFlagProvider>
+    </DesignContextProvider>
   );
 }
 

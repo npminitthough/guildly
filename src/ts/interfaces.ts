@@ -10,6 +10,16 @@ export interface IPlant {
   nutrientAccumulator?: boolean;
   biofumigant?: boolean;
   imageUrl?: string;
+  categoryId?: string;
+}
+
+export interface IFilters {
+  nitrogenFixer: boolean;
+  insectAttractor: boolean;
+  nutrientAccumulator: boolean;
+  vva1: boolean;
+  quinceC: boolean;
+  m27: boolean;
 }
 
 export interface ICard extends ICardMetaData {
@@ -39,9 +49,15 @@ export interface ICardPosition {
   top: string;
 }
 
-export interface ICategory {
+export interface ICategoryWithPlants {
   name: string;
   plants: IPlant[];
+  id?: string;
+}
+
+export interface ICategory {
+  name: string;
+  id?: string;
 }
 
 export interface IMeasurementDisplay {

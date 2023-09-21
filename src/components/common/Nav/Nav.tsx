@@ -31,7 +31,7 @@ const StyledNav = styled.nav<{ height?: string }>`
 `;
 
 const Logo = styled(Link)`
-  flex: 1;
+  width: 295px;
   display: flex;
   justify-content: space-around;
   align-items: center;

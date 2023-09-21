@@ -10,6 +10,8 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "concurrently": "^8.2.1",
+    "firebase": "^9.17.1",
     "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress:open": "./node_modules/.bin/cypress open -e \"TAGS=not @documentation-only\"",
+    "emulator": "conc \"firebase emulators:start --only firestore\" \" node src/test-data/import.js\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
@@ -72,7 +76,9 @@
     "@types/styled-components": "^5.1.26",
     "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^11.2.0",
+    "firebase-admin": "^11.10.1",
     "prop-types": "^15.8.1",
+    "ts-jest": "^29.1.1",
     "ts-loader": "^9.4.2",
     "webpack": "^5.74.0"
   }

@@ -16,24 +16,22 @@ Feature: Design page menu
         Then I see "climbers" in the side menu
 
     Scenario: I can show and hide plants in a category
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I see the plant options
         And I see "bergamot" as a plant option
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I do not see plant options
 
-
-    # cucumber does not currently support css hover simulation
     @documentation-only
     Scenario: I can view additional information about a plant
         When I click "ornamental perennials"
         Then I see the plant options
         And I see "bergamot" as a plant option
-        When I hover over "bergamot" in the plant options
-        Then I see additional information about the plant
+        And I see "Max spread" in the plant options
+        And I see "Max height" in the plant options
 
     Scenario: I can add a plant to the canvas via the menu
-        When I click "ornamental perennials"
+        When I click "ornamental perennials (9)"
         Then I see the plant options
         And I see "bergamot" as a plant option
         When I click "bergamot"
