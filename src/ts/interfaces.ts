@@ -1,4 +1,5 @@
 import { CardType } from './enums'
+import { CategoryName } from './types';
 
 export interface IPlant {
   name: string;
@@ -13,13 +14,15 @@ export interface IPlant {
   categoryId?: string;
 }
 
+export interface IPlantWithCategories extends Omit<IPlant, 'categoryId'> {
+  categories: CategoryName[]
+}
+
 export interface IFilters {
   nitrogenFixer: boolean;
   insectAttractor: boolean;
   nutrientAccumulator: boolean;
-  vva1: boolean;
-  quinceC: boolean;
-  m27: boolean;
+  categoryId: string | null;
 }
 
 export interface ICard extends ICardMetaData {

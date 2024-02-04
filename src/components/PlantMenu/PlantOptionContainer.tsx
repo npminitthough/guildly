@@ -9,11 +9,15 @@ import { IOptionComponentProps } from "./ts/interface";
 
 interface IProps {
   plant: IPlant;
-  category: CategoryName;
+  category?: CategoryName;
   optionComponent: (props: IOptionComponentProps) => JSX.Element;
 }
 
-export default function PlantOptionContainer({ plant, category, optionComponent }: IProps) {
+export default function PlantOptionContainer({
+  plant,
+  category,
+  optionComponent,
+}: IProps) {
   const designCtx = useContext(DesignContext);
 
   function onClick() {
@@ -23,17 +27,13 @@ export default function PlantOptionContainer({ plant, category, optionComponent 
         xInMetres: plant.widthInMetres,
       },
       type: CardType.plant,
-      colour: categoryColours[category],
+      colour: category && categoryColours[category],
     });
   }
 
-  const option = optionComponent({onClick, className: "plant-option"})
+  const option = optionComponent({ onClick, className: "plant-option" });
 
-  return (
-    <div>
-      {option}
-    </div>
-  );
+  return <div>{option}</div>;
 }
 
 const categoryColours = {

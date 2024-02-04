@@ -3,25 +3,26 @@ import styled from "styled-components";
 import GlobalStyles from "../../constants/styles";
 import { IPlant } from "../../ts/interfaces";
 
-import NitrogenFixerIcon from "../common/Icon/NitrogenFixer";
-import NutrientAccumulatorIcon from "../common/Icon/NutrientAccumulator";
-import InsectAttractorIcon from "../common/Icon/InsectAttractor";
-
 import { getDisplayValue } from "../../utils/conversions";
+import Tag from "../common/Tag/Tag";
 
 interface IProps {
   id?: string;
   plant: IPlant;
+  categoryName?: string;
   style?: React.CSSProperties;
   highlightOnHover?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 export default function PlantInfo({
   id,
   plant,
+  categoryName,
   style,
   highlightOnHover,
+  className,
   onClick,
 }: IProps) {
   const {
@@ -32,8 +33,9 @@ export default function PlantInfo({
     insectAttractor,
     nitrogenFixer,
     nutrientAccumulator,
-    name,
+    name
   } = plant;
+
   const widthDisplayValue = getDisplayValue(widthInMetres);
   const heightDisplayValue = heightInMetres
     ? getDisplayValue(heightInMetres)
@@ -45,6 +47,7 @@ export default function PlantInfo({
       style={style}
       onClick={onClick}
       highlightOnHover={highlightOnHover}
+      className={className}
     >
       <PlantDetailsContainer style={{ display: "flex" }}>
         <div>
@@ -52,11 +55,6 @@ export default function PlantInfo({
             style={{ display: "inline-flex", alignItems: "center" }}
           >
             <PlantName>{name}</PlantName>
-            <TagContainer>
-              {insectAttractor && <InsectAttractorIcon />}
-              {nitrogenFixer && <NitrogenFixerIcon />}
-              {nutrientAccumulator && <NutrientAccumulatorIcon />}
-            </TagContainer>
           </PlantInfoItem>
           <PlantInfoItem>
             <Label>Max spread: </Label>
@@ -80,26 +78,34 @@ export default function PlantInfo({
               <Text>{rootStock}</Text>
             </PlantInfoItem>
           )}
+          
         </div>
 
-        {imageUrl && <Image src={imageUrl} />}
+        {imageUrl && <Image src={imageUrl} alt={name} />}
       </PlantDetailsContainer>
+      <TagContainer className="plant-info__tags">
+        {nitrogenFixer && <Tag color="cornflowerblue">nitrogen fixer</Tag>}
+        {insectAttractor && <Tag color="purple">insect attractor</Tag>}
+        {nutrientAccumulator && <Tag color="orange">nutrient accumulator</Tag>}
+        {categoryName && <Tag color="darkgoldenrod" variant="transparent">{categoryName.replace(/s$/, '')}</Tag>}
+      </TagContainer>
     </PlantInfoContainer>
   );
 }
 
 const PlantInfoContainer = styled.div<{ highlightOnHover?: boolean }>`
-  max-width: 250px;
+  max-width: 255px;
   min-height: 40px;
   padding: 15px 20px;
   background-color: white;
   text-align: left;
   box-shadow: 0 0 1px grey;
+  border-right: #bcbfba 0.05px solid;
   ${({ highlightOnHover }) => {
     return (
       highlightOnHover &&
       `:hover {
-        box-shadow: inset 1px 1px 15px #ecaf8050;
+        box-shadow: inset 1px 1px 8px lightgrey;
       }`
     );
   }}
@@ -138,6 +144,6 @@ const Image = styled.img`
 `;
 
 const TagContainer = styled.div`
-  display: inline-block;
-  margin-left: 10px;
+  display: inline-flex;
+  margin-top: 10px;
 `;

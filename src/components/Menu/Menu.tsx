@@ -22,16 +22,6 @@ const MenuWrapper = styled.aside`
   padding: 0;
   color: white;
   font-family: monospace;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
-  scrollbar-color: ${GlobalStyles.colors.secondary500}
-    ${GlobalStyles.colors.primary500};
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
-  ::-webkit-scrollbar-thumb {
-    background-color: ${GlobalStyles.colors.secondary500};
-  }
-  ::-webkit-scrollbar {
-    width: 3px;
-  }
 `;
