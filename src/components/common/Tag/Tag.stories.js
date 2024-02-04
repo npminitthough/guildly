@@ -11,6 +11,7 @@ export const ColourTags = () => {
       <Tag color="purple">nitrogen fixer</Tag>
       <Tag color="orange">insect attractor</Tag>
       <Tag color="cornflowerblue">dynamic accumulator</Tag>
+      <Tag color="magenta" variant="transparent">trees</Tag>
     </div>
   );
 };
