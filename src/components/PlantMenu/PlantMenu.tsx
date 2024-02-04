@@ -1,52 +1,80 @@
+import { useContext, useRef } from "react";
 import styled from "styled-components";
-import { useContext } from "react";
 
+import useFilterPlants from "../../hooks/useFilterPlants/useFilterPlants";
+import useGetCategories from "../../hooks/useGetCategories/useGetCategories";
+import useGetPlants from "../../hooks/useGetPlants/useGetPlants";
 import { FeatureFlagCxt } from "../../store/feature-flag-context";
-import Category from "./Category";
+import { IFilters } from "../../ts/interfaces";
 import Filters from "../Filters/Filters";
-import { ICategory, IPlant } from "../../ts/interfaces";
+import PlantInfo from "../PlantInfo/PlantInfo";
+import PlantOption from "./PlantOption";
+import PlantOptionContainer from "./PlantOptionContainer";
+import { IOptionComponentProps } from "./ts/interface";
 
 const PlantMenuWrapper = styled.div``;
 
-interface IPlantMenu {
-  categories: ICategory[];
-  plants: IPlant[];
-}
-
-export default function PlantMenu({ plants, categories }: IPlantMenu) {
-  let categoriesWithPlants;
+export default function PlantMenu() {
   const FeatureFlagContext = useContext(FeatureFlagCxt);
+  const {result: categoryRes} = useGetCategories()
 
-  if (!categories.length) {
-    categoriesWithPlants = [
-      { name: "small trees", plants: [] },
-      { name: "shrubs", plants: [] },
-      { name: "perennial vegetables", plants: [] },
-      { name: "ornamental perennials", plants: [] },
-      { name: "common herbs", plants: [] },
-      { name: "bulbs", plants: [] },
-      { name: "ground cover", plants: [] },
-      { name: "root crops", plants: [] },
-      { name: "green manures", plants: [] },
-      { name: "climbers", plants: [] },
-    ];
+  const {loading, error, result} = useGetPlants({
+    loading: true, error: false, result: undefined
+  })
+  
+  const {filteredPlants, setFilterState} = useFilterPlants(result)
 
-    categoriesWithPlants.sort((a, b) => a.name.localeCompare(b.name));
-  } else {
-    categoriesWithPlants = categories.map((category) => {
-      return {
-        name: category.name,
-        plants: plants.filter((plant) => plant.categoryId === category.id),
-      };
-    });
+  const plantOptionsComponent = useRef<HTMLDivElement>(null);
+
+  function updateFilters(filters: IFilters) {
+    setFilterState(filters)
+
+    if (plantOptionsComponent.current)
+      plantOptionsComponent.current.scrollTo({ top: 0 });
   }
 
   return (
+    
+
     <PlantMenuWrapper className="l-plant-menu">
-      {FeatureFlagContext.showFilters ? <Filters /> : null}
-      {categoriesWithPlants.map((category, i) => {
-        return <Category key={i} category={category} />;
-      })}
+      {FeatureFlagContext.showFilters ? (
+        <Filters updateFilters={updateFilters} categories={categoryRes}/>
+      ) : null}
+        <PlantOptions className="plant-options" ref={plantOptionsComponent}>
+          {
+          loading ? <p>Loading plants...</p> : error ? <p>Error occurred loading plants</p>
+          :
+          filteredPlants?.map((plant, i) => { 
+            return (
+              <PlantOptionContainer
+                key={i}
+                plant={plant}
+                optionComponent={(props: IOptionComponentProps) => {
+                  if (FeatureFlagContext.showFilters) {
+                    return (
+                      <PlantInfo
+                        {...props}
+                        plant={plant}
+                        highlightOnHover
+                        style={{ cursor: "pointer" }}
+                        categoryName={categoryRes && plant.categoryId && categoryRes[plant.categoryId]}
+                      />
+                    );
+                  } else {
+                    return <PlantOption {...props} plant={plant} />;
+                  }
+                }}
+              />
+            );
+          })}
+        
+        </PlantOptions>
     </PlantMenuWrapper>
+
   );
 }
+
+const PlantOptions = styled.div`
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+`;
