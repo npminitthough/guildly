@@ -12,11 +12,38 @@ Then("I do not see plant options", () => {
     cy.get('.plant-options').should('not.exist');
 });
 
-Then("I see {string} as a plant option", (plantName: string) => {
-    cy.get('.plant-options').contains(plantName)
-});
-
 Then("I see {string} in the plant options", (text: string) => {
     cy.get('.plant-options').contains(text, {matchCase: false})
+    .closest('.plant-option').as('currentPlantOption')
 });
+
+Then("I do not see {string} in the plant options", (text: string) => {
+    cy.get('.plant-options').contains(text, {matchCase: false})
+    .should('not.exist')
+});
+
+Then("I see {string} in the plant option info", (text: string) => {
+    cy.get('@currentPlantOption').then(plantOption => {
+        cy.wrap(plantOption).contains(text, {matchCase: false})
+    })
+})
+
+Then("I see an image in the plant option info with {string} as the alt text", (altText) => {
+    cy.get('@currentPlantOption').then(plantOption => {
+        cy.wrap(plantOption).within(() => {
+            cy.get('img').should('have.attr', 'alt', altText)
+        })
+    })
+})
+
+Then("I see plant options listed", () => {
+    cy.get('Loading plants').should('not.exist');
+    cy.get('.plant-option').should('exist');
+})
+
+Then("all listed plant options have the {string} tag", (tagName: string) => {
+    cy.get('.plant-options').each(el => {
+        cy.wrap(el).get('.plant-info__tags').contains(tagName)
+    })
+})
 
