@@ -9,9 +9,6 @@ const initialFilters = {
   nitrogenFixer: false,
   insectAttractor: false,
   nutrientAccumulator: false,
-  vva1: false,
-  quinceC: false,
-  m27: false,
 };
 
 const defaultContext = {

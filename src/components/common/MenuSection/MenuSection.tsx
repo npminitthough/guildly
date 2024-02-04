@@ -29,10 +29,14 @@ export default function MenuSection({ title, children }: IProps) {
 
 const Content = styled.div`
   padding: 10px 10px;
-  background-color: ${GlobalStyles.colors.primary500};
+  background-color: hsla(260, 11%, 95%, 1);
 `;
 const Title = styled.h3`
   color: white;
+  border-radius: 10px;
+  background-color: #3c8b67;
+  padding: 10px;
+  font-size: 1em;
 `;
 const TitleContainer = styled.div`
   display: flex;

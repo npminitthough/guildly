@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const defaultContext = {
-  showFilters: false,
+  showFilters: true,
 };
 
 export const FeatureFlagCxt = createContext(defaultContext);

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 import Nav from "../../components/common/Nav/Nav";
@@ -10,14 +9,8 @@ import Canvas from "../../components/Canvas/Canvas";
 import DesignContextProvider from "../../store/design-context";
 import FeatureFlagProvider from "../../store/feature-flag-context";
 
-import useGetCategories from "../../hooks/useGetCategories/useGetCategories";
-import useGetPlants from "../../hooks/useGetPlants/useGetPlants";
-
 export default function DesignPage() {
   const navHeight = "40px";
-
-  const categories = useGetCategories();
-  const plants = useGetPlants();
 
   return (
     <DesignContextProvider>
@@ -32,7 +25,7 @@ export default function DesignPage() {
           </Nav>
           <Container className="l-design-page" navHeight={navHeight}>
             <Menu style={{ width: "295px" }}>
-              <PlantMenu categories={categories} plants={plants} />
+              <PlantMenu />
             </Menu>
             <Canvas />
           </Container>

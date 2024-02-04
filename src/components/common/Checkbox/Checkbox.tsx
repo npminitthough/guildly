@@ -6,24 +6,27 @@ interface IProps {
   label: string;
   checked?: boolean;
   onChange: (e: any) => void;
-  dataId?: string;
+  id?: string;
   className?: string;
+  dataId?: string;
 }
 
 export default function Checkbox({
   label,
   checked,
   onChange,
-  dataId,
+  id,
   className,
+  dataId
 }: IProps) {
   return (
-    <Label>
+    <Label htmlFor={id}>
       <Input
         type="checkbox"
         checked={checked}
         onChange={onChange}
         className={className}
+        id={id}
         data-id={dataId}
       />
       <span>{label}</span>
@@ -35,6 +38,9 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: black;
+  font-family: "Arial";
+  font-size: 15px;
 `;
 
 const Input = styled.input`
@@ -45,20 +51,23 @@ const Input = styled.input`
   height: 18px;
   border-radius: 2px;
   margin: 0 5px 0 0;
-  border: 0.15em solid ${GlobalStyles.colors.secondary500};
+  border: 1px solid lightgrey;
+  box-shadow:
   outline: none;
   cursor: pointer;
 
   :checked {
-    background-color: white;
+    background-color: ${GlobalStyles.colors.secondary600};
     position: relative;
   }
 
   :checked::before {
     content: "\\2714";
-    font-size: 18px;
-    color: ${GlobalStyles.colors.secondary500};
+    font-size: 14px;
+    background-color: ${GlobalStyles.colors.secondary600};
+    color: white;
     position: absolute;
-    top: -4px;
+    top: 0px;
+    left: 2px;
   }
 `;
