@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 
 import useFilterPlants from "../../hooks/useFilterPlants/useFilterPlants";
@@ -6,6 +6,7 @@ import useGetCategories from "../../hooks/useGetCategories/useGetCategories";
 import useGetPlants from "../../hooks/useGetPlants/useGetPlants";
 import { FeatureFlagCxt } from "../../store/feature-flag-context";
 import { IFilters } from "../../ts/interfaces";
+import Searchbar from "../Searchbar/Searchbar";
 import Filters from "../Filters/Filters";
 import PlantInfo from "../PlantInfo/PlantInfo";
 import PlantOption from "./PlantOption";
@@ -16,15 +17,21 @@ const PlantMenuWrapper = styled.div``;
 
 export default function PlantMenu() {
   const FeatureFlagContext = useContext(FeatureFlagCxt);
+  const [searchInputValue, setSearchInputValue] = useState("")
   const {result: categoryRes} = useGetCategories()
 
   const {loading, error, result} = useGetPlants({
     loading: true, error: false, result: undefined
   })
   
-  const {filteredPlants, setFilterState} = useFilterPlants(result)
+  const {filteredPlants, setFilterState, setSearchState} = useFilterPlants(result)
 
   const plantOptionsComponent = useRef<HTMLDivElement>(null);
+
+  function updateSearchValue(value: string) {
+    setSearchInputValue(value)
+    setSearchState(value)
+  }
 
   function updateFilters(filters: IFilters) {
     setFilterState(filters)
@@ -38,7 +45,10 @@ export default function PlantMenu() {
 
     <PlantMenuWrapper className="l-plant-menu">
       {FeatureFlagContext.showFilters ? (
+        <>
         <Filters updateFilters={updateFilters} categories={categoryRes}/>
+        <Searchbar value={searchInputValue} updateValue={updateSearchValue}/>
+        </>
       ) : null}
         <PlantOptions className="plant-options" ref={plantOptionsComponent}>
           {
@@ -75,6 +85,6 @@ export default function PlantMenu() {
 }
 
 const PlantOptions = styled.div`
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 124px);
   overflow-y: auto;
 `;
