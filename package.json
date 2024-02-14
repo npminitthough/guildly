@@ -29,13 +29,14 @@
     "cypress:open": "./node_modules/.bin/cypress open -e \"TAGS=not @documentation-only\"",
     "emulator": "conc \"firebase emulators:start --only firestore\" \" node src/test-data/import.js\"",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ],
     "overrides": [
       {
@@ -63,21 +64,26 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
     "@cypress/webpack-preprocessor": "^5.17.1",
-    "@storybook/addon-actions": "^6.5.16",
-    "@storybook/addon-essentials": "^6.5.16",
-    "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-links": "^6.5.16",
-    "@storybook/builder-webpack5": "^6.5.16",
-    "@storybook/manager-webpack5": "^6.5.16",
-    "@storybook/node-logger": "^6.5.16",
-    "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/react": "^6.5.16",
+    "@storybook/addon-actions": "^7.6.13",
+    "@storybook/addon-essentials": "^7.6.13",
+    "@storybook/addon-interactions": "^7.6.13",
+    "@storybook/addon-links": "^7.6.13",
+    "@storybook/addon-mdx-gfm": "^7.6.13",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.13",
+    "@storybook/node-logger": "^7.6.13",
+    "@storybook/preset-create-react-app": "^7.6.13",
+    "@storybook/react": "^7.6.13",
+    "@storybook/react-webpack5": "^7.6.13",
+    "@storybook/test": "^7.6.13",
     "@storybook/testing-library": "^0.0.13",
     "@types/styled-components": "^5.1.27",
     "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^11.2.0",
+    "eslint-plugin-storybook": "^0.6.15",
     "firebase-admin": "^11.10.1",
     "prop-types": "^15.8.1",
+    "storybook": "^7.6.13",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.4.4",
     "webpack": "^5.88.2"

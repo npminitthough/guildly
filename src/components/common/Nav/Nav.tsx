@@ -12,7 +12,10 @@ interface IProps {
 function Nav({ children, height }: IProps) {
   return (
     <StyledNav id="navbar" height={height}>
-      <Logo to="/">Guildly</Logo>
+      <LogoContainer>
+        <Logo to="/">Guildly</Logo>
+      </LogoContainer>
+      
       <Contents>{children}</Contents>
     </StyledNav>
   );
@@ -30,11 +33,14 @@ const StyledNav = styled.nav<{ height?: string }>`
   color: white;
 `;
 
-const Logo = styled(Link)`
+const LogoContainer = styled.div`
   width: 295px;
+`;
+
+const Logo = styled(Link)`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  line-height: 40px;
+  margin: 0 121px;
   color: white;
   text-decoration: none;
   font-size: 1.3em;

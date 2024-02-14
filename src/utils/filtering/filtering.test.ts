@@ -93,5 +93,55 @@ describe('filtering', () => {
                 && plant.insectAttractor === filterState.insectAttractor
             ))
         })
+
+        it('filters by search term (lowercase)', () => {
+            const searchState = "al"
+          
+            updateFiltering({searchState, setFilteredPlants, allPlants: PLANTS})
+            expect(setFilteredPlants).toBeCalledTimes(1)
+            expect(setFilteredPlants).toBeCalledWith(PLANTS.filter(plant => plant.name.indexOf(searchState) > -1))
+        })
+
+        it('filters by search term (uppercase)', () => {
+            const searchState = "AL"
+          
+            updateFiltering({searchState, setFilteredPlants, allPlants: PLANTS})
+            expect(setFilteredPlants).toBeCalledTimes(1)
+            expect(setFilteredPlants).toBeCalledWith(PLANTS.filter(plant => plant.name.indexOf(searchState.toLowerCase()) > -1))
+        })
+
+        it('filters by search term + a function', () => {
+            const searchState = "al"
+            const filterState = {
+                nitrogenFixer: false,
+                insectAttractor: true,
+                nutrientAccumulator: false,
+                categoryId: null
+            } 
+          
+            updateFiltering({searchState, filterState, setFilteredPlants, allPlants: PLANTS})
+            expect(setFilteredPlants).toBeCalledTimes(1)
+            expect(setFilteredPlants).toBeCalledWith(PLANTS.filter(plant => 
+                plant.insectAttractor === filterState.insectAttractor
+                && plant.name.indexOf(searchState) > -1
+            ))
+        })
+
+        it('filters by search term + category', () => {
+            const searchState = "ch"
+            const filterState = {
+                nitrogenFixer: false,
+                insectAttractor: false,
+                nutrientAccumulator: false,
+                categoryId: 'rKO4wursmqj8v1UBOwG2'
+            } 
+          
+            updateFiltering({searchState, filterState, setFilteredPlants, allPlants: PLANTS})
+            expect(setFilteredPlants).toBeCalledTimes(1)
+            expect(setFilteredPlants).toBeCalledWith(PLANTS.filter(plant => 
+                plant.name.indexOf(searchState) > -1
+                && plant.categoryId === filterState.categoryId
+            ))
+        })
     })
 })
