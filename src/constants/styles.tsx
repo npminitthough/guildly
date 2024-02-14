@@ -1,5 +1,6 @@
 const GlobalStyles = {
     colors: {
+        primary400: '#c1e1d3',
         primary500: "#6ac19a",
         primary600: "#46B884",
         primary700: "#33825E",
