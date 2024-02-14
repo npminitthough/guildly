@@ -3,7 +3,7 @@ Feature: Design page menu
     Background: Visit design page
         When I visit the design page
         Then I see plant options listed
-        
+ 
     Scenario: There is a 'Filters -' button in the side menu that reveals filters when clicked
         Then I see "Filters +"
         And I see 'reset filters'
@@ -15,6 +15,9 @@ Feature: Design page menu
         And I see a 'nutrient accumulator' checkbox
         When I click 'Filters -'
         Then I do not see a 'category' dropdown
+
+    Scenario: There is a search input component
+        Then I see an input with placeholder "search"
 
     Scenario: I can see a list of plants
         Then I see 'Alyssum' in the plant options
@@ -94,6 +97,19 @@ Feature: Design page menu
         And I click 'Filters -'
         And I see 'Alyssum' in the plant options
         Then I see 'Autumn Olive' in the plant options
+
+    Scenario: Search exact term
+       When I enter "blackcurrant" in the search input
+       Then there is 1 item in the plant options listed
+       And I see 'Blackcurrant' in the plant options
+
+    Scenario: Search partial term
+       When I enter "ap" in the search input
+       And there are 4 items in the plant options listed
+       And I see 'Apple' in the plant options
+       And I see 'Apricot' in the plant options
+       And I see 'Grape Hyacinth' in the plant options
+       And I see 'Japanese Wineberry' in the plant options
 
 
 

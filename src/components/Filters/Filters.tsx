@@ -142,7 +142,7 @@ const Reset = styled.p`
 `
 const Content = styled.div`
   padding: 10px 10px;
-  background-color: ${GlobalStyles.colors.primary500};
+  background-color: ${GlobalStyles.colors.primary400};
   position: absolute;
   width: 275px;
   left: 0;

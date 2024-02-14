@@ -56,6 +56,10 @@ Then("I click the {string} button", (buttonText: string) => {
     })
   });
 
+  Then("I see an input with placeholder {string}", (label: string) => {
+    cy.get(`input[placeholder=${label}]`)
+  });
+
   Then("I enter {string} in the {string} input", (value: string, label: string) => {
     cy.contains('label', label)
     .invoke('attr', 'for')

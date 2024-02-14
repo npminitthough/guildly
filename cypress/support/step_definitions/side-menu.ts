@@ -47,3 +47,15 @@ Then("all listed plant options have the {string} tag", (tagName: string) => {
     })
 })
 
+Then("there are {int} items in the plant options listed", (itemCount: number) => {
+    cy.get('.plant-options').children().should('have.length', itemCount)
+})
+
+Then("there is 1 item in the plant options listed", () => {
+    cy.get('.plant-options').children().should('have.length', 1)
+})
+
+Then("I enter {string} in the search input", (inputValue: string) => {
+    cy.get(`input[placeholder=search]`).type(inputValue)
+});
+
