@@ -18,6 +18,7 @@ const TagContainer = styled.div<{ color?: string, variant: variant }>`
   margin: 1px;
   border-radius: 8px;
   width: fit-content;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
