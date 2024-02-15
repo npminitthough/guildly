@@ -60,7 +60,7 @@ export default function PlantInfo({
             <Label>Max spread: </Label>
             <Text>
               {widthDisplayValue.value}
-              {widthDisplayValue.units}
+              {widthDisplayValue.units.toLowerCase()}
             </Text>
           </PlantInfoItem>
           {heightDisplayValue && (
@@ -68,7 +68,7 @@ export default function PlantInfo({
               <Label>Max height: </Label>
               <Text>
                 {heightDisplayValue.value}
-                {heightDisplayValue.units}
+                {heightDisplayValue.units.toLowerCase()}
               </Text>
             </PlantInfoItem>
           )}
